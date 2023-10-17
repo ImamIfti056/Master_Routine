@@ -162,11 +162,11 @@ def view_table():
 #add_teacher()
 #view_teachers()
 
-#view_schedule()
+view_schedule()
 #add_schedule()
 #remove_schedule()
 #view_schedule()
-view_all_schedules(int(input("Enter year: ")), input("Enter teacher name (type all for all teachers): "))
+#view_all_schedules(int(input("Enter year: ")), input("Enter teacher name (type all for all teachers): "))
 
 #get_current_classes("sunday")
 

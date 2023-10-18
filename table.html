@@ -8,20 +8,40 @@
     <title>Document</title>
 </head>
 <body>
-    <h1><button class="btn" onclick="lt()">&lt;</button> <span id="dayLabel"></span> <button class="btn" onclick="gt()">&gt;</button></h1>
-    <table id="table">
-        <!-- <tr>
-            <th>Teachers Name</th>
-            <th>8:00-8:50</th>
-            <th>8:50-9:40</th>
-            <th>9:40-10:30</th>
-            <th>10:40-11:30</th>
-            <th>11:30-12:20</th>
-            <th>12:20-1:10</th>
-            <th>2:30-5:00</th>
-        </tr> -->
-    </table>
+    <section id="teachers-list">
+        <h1>Teachers List</h1>
+        <ol type="1">
+            <li>FRH - Prof. Dr. Md. Faruque Hossain</li>
+            <li>MH - Prof. Dr. Monir Hossain</li>
+            <li>AH - Prof. Dr. ABM Aowlad Hossain</li>
+            <li>SI - Prof. Dr. Sk. Shariful Islam</li>
+            <li>RI - Prof. Dr. Sheikh Md. Rabiul Islam</li>
+        </ol>
+    </section>
 
-    <script src="main.js"></script>
+    <section id="routine">
+        <h1><button class="btn" onclick="lt()">&lt;</button> <span id="dayLabel"></span> <button class="btn" onclick="gt()">&gt;</button></h1>
+        <table id="table">
+            
+        </table>
+    </section>
+
+    <section id="year-routine">
+        <h1>3rd Year</h1>
+        <table>
+            <tr>
+                <th>Day | Time</th>
+                <th>8:00-8:50</th>
+                <th>8:50-9:40</th>
+                <th>9:40-10:30</th>
+                <th>10:40-11:30</th>
+                <th>11:30-12:20</th>
+                <th>12:20-1:10</th>
+                <th>2:30-5:00</th>
+            </tr>
+        </table>
+    </section>
+
+    <script src="static.js"></script>
 </body>
 </html>

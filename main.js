@@ -4,7 +4,7 @@ const weeks_url = "http://127.0.0.1:8000/weeks/";
 fetch(teachers_url)
   .then((response) => response.json())
   .then((data) => {
-    //console.log(data);
+    //console.log("teachers: ",data);
     localStorage.setItem("datas", JSON.stringify(data));
   })
   .catch((error) => {
@@ -14,7 +14,7 @@ fetch(teachers_url)
 fetch(weeks_url)
   .then((response) => response.json())
   .then((data) => {
-    //console.log(data)
+    //console.log("weeks: ",data)
     localStorage.setItem("weeks", JSON.stringify(data));
   })
   .catch((error) => {
@@ -27,15 +27,15 @@ const weeks_list = localStorage.getItem("weeks");
 const teachers = JSON.parse(teachers_list);
 const weeks = JSON.parse(weeks_list);
 
- //console.log(teachers)
-// console.log(weeks);
+ //console.log("teachers: ",teachers)
+ //console.log("weeks: ",weeks);
 
 let days = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
 
 var teachers_schedule =[];
 
 teachers.map(teacher => {
-    //console.log(teacher);
+    console.log("teacher", teacher);
     var teacher_schedule = {
         "id": "",
         "name": "", 
@@ -60,7 +60,6 @@ teachers.map(teacher => {
             "end_time": ""
         }
         weeks.map(week => {
-            //console.log(day);
             if(week.id == sch){
                 //console.log(week);
                 schedule.year = week.year;
@@ -70,11 +69,12 @@ teachers.map(teacher => {
                 teacher_schedule.sunday.push(schedule);
             }
         })
-        // console.log(teacher_schedule.sunday)
+        //console.log("sunday sch: ",teacher_schedule.sunday)
         
     })
 
     teacher.monday.map(sch => {
+        //console.log(sch);
         schedule = {
             "year": "",
             "course": "",
@@ -92,7 +92,7 @@ teachers.map(teacher => {
                 teacher_schedule.monday.push(schedule);
             }
         })
-        // console.log(teacher_schedule.monday)     
+        //console.log("monday sch", teacher_schedule.monday)     
     })
     teacher.tuesday.map(sch => {
         schedule = {
@@ -122,13 +122,13 @@ teachers.map(teacher => {
         }
         weeks.map(week => {
             if(week.id == sch){
-                console.log(sch);
+                //console.log(sch);
                 schedule.year = week.year;
                 schedule.course = week.course;
                 schedule.start_time = week.starttime;
                 schedule.end_time = week.endtime;
                 teacher_schedule.wednesday.push(schedule);
-                console.log(teacher_schedule.wednesday)       
+                //console.log(teacher_schedule.wednesday)       
                 schedule = {
                     "year": "",
                     "course": "",

@@ -2,14 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-align: center;
 }
 
 body{
     font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
 }
 
 h1{
@@ -31,6 +27,12 @@ td, th{
     padding: 10px;
 }
 
+.flex{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+
 .btn{
     padding: 6px;
     cursor: pointer;
@@ -38,25 +40,31 @@ td, th{
     font-size: 20px;
 }
 
-#year-routine{
-    display: none;
+#top{
+    background-color: #ddd;
 }
 
 #teachers-list{
     flex: 1;
-    border-right: 2px solid #333;
+    background-color: #eee;
+    padding: 20px 30px;
+    /* display: none; */
 }
 #teachers-list ol li{
     margin: 10px 0;
-    font-size: 18px;
+    font-size: 16px;
 }
 
-#routine{
+#master-routine{
     flex: 4;
+    /* display: none; */
 }
 
-#firstRow{
-    background-color: teal;
-    color: white;    
+#year-routine{
+    flex: 4;
+    margin: 20px auto;
+    display: none;
 }
 
+#bottom{
+}

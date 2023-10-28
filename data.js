@@ -6,65 +6,65 @@ teachers=[
             "sunday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "monday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
@@ -73,25 +73,25 @@ teachers=[
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "tuesday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
@@ -110,35 +110,35 @@ teachers=[
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "wednesday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
@@ -147,30 +147,30 @@ teachers=[
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "thursday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
@@ -179,8 +179,8 @@ teachers=[
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
@@ -197,18 +197,18 @@ teachers=[
             "sunday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
@@ -217,13 +217,13 @@ teachers=[
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
@@ -234,18 +234,18 @@ teachers=[
             "monday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
@@ -254,30 +254,30 @@ teachers=[
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "tuesday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
@@ -286,45 +286,45 @@ teachers=[
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "wednesday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
@@ -333,25 +333,25 @@ teachers=[
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "thursday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
@@ -360,13 +360,13 @@ teachers=[
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
@@ -375,8 +375,8 @@ teachers=[
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ]
         }
@@ -388,70 +388,70 @@ teachers=[
             "sunday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "monday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
@@ -462,28 +462,28 @@ teachers=[
             "tuesday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
@@ -492,25 +492,25 @@ teachers=[
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "wednesday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
@@ -536,23 +536,23 @@ teachers=[
             "thursday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
@@ -561,13 +561,13 @@ teachers=[
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ]
         }
@@ -579,18 +579,18 @@ teachers=[
             "sunday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
@@ -599,13 +599,13 @@ teachers=[
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
@@ -616,70 +616,70 @@ teachers=[
             "monday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "tuesday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
@@ -690,18 +690,18 @@ teachers=[
             "wednesday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
@@ -710,35 +710,35 @@ teachers=[
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "thursday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
@@ -757,8 +757,8 @@ teachers=[
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ]
         }
@@ -770,50 +770,50 @@ teachers=[
             "sunday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "monday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
@@ -822,8 +822,8 @@ teachers=[
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
@@ -832,8 +832,8 @@ teachers=[
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
@@ -844,8 +844,8 @@ teachers=[
             "tuesday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
@@ -854,8 +854,8 @@ teachers=[
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
@@ -864,30 +864,30 @@ teachers=[
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ],
             "wednesday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
@@ -896,18 +896,18 @@ teachers=[
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
@@ -918,23 +918,23 @@ teachers=[
             "thursday":[
                 {
                     "time": "8:00-8:50",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "8:50-9:40",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "9:40-10:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "10:40-11:30",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "11:30-12:20",
@@ -943,13 +943,13 @@ teachers=[
                 },
                 {
                     "time": "12:20-1:10",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 },
                 {
                     "time": "2:30-5:00",
-                    "year": "",
-                    "course": ""
+                    "year": null,
+                    "course": null
                 }
             ]
         }

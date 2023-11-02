@@ -44,8 +44,6 @@ const details = JSON.parse(details_list);
 //  console.log("weeks: ",weeks);
 //  console.log("details: ",details);
 
-let days = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
-
 var teachers_schedule =[];
 
 teachers.map(teacher => {
@@ -71,11 +69,10 @@ teachers.map(teacher => {
       "year": "",
       "course": ""
     }
-    teacher.sunday.map(day_id => {
-      //console.log(day_id);        
+
+    teacher.sunday.map(day_id => {      
       weeks.map(week => {
         if(week.id == day_id){
-          console.log(week);
           var first = week.first;
           var second = week.second;
           var third = week.third;
@@ -84,99 +81,981 @@ teachers.map(teacher => {
           var sixth = week.sixth;
           var lab = week.lab;
           
-          first.map(sch => {
-            for(let i=0; i<details.length; i++){
-              if(details[i].id == sch){
-                schedule.time = "8:00 AM - 8:50 AM";
-                schedule.year = details[i].year;
-                schedule.course = details[i].course;
+          for(let i=0; i<details.length; i++){
+            schedule.time = "8:00 AM - 8:50 AM";
+            if(details[i].id == first[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
                 teacher_schedule.sunday.push(schedule);
                 schedule = {
                   "time": "",
                   "year": "",
                   "course": ""
                 }
-                break;
-              }else{
-                schedule.time = "8:00 AM - 8:50 AM";
-                schedule.year = "";
-                schedule.course = "";
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-              }              
-            }
-          })
-          //console.log(teacher_schedule.sunday)
-
-          second.map(sch => {
-            for(let i=0; i<details.length; i++){
-              if(details[i].id == sch){
-                schedule.time = "8:50 AM - 9:40 AM";
-                schedule.year = details[i].year;
-                schedule.course = details[i].course;
-                teacher_schedule.sunday.push(schedule);
-                //console.log(teacher_schedule.sunday);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;
-              }else{
-                schedule.time = "8:50 AM - 9:40 AM";
-                schedule.year = "";
-                schedule.course = "";
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
+                break;  
               }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.sunday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
             }
-          })
+          }
 
-          third.map(sch => {
-            for(let i=0; i<details.length; i++){
-              if(details[i].id == sch){
-                schedule.time = "9:40 AM - 10:30 AM";
-                schedule.year = details[i].year;
-                schedule.course = details[i].course;
-                teacher_schedule.sunday.push(schedule);
-                //console.log(teacher_schedule.sunday);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;
-              }else{
-                schedule.time = "9:40 AM - 10:30 AM";
+          for(let i=0; i<details.length; i++){
+            schedule.time = "8:50 AM - 9:40 AM";
+            if(details[i].id == second[0]){
+              if(typeof(details[i].course) == "object"){
                 schedule.year = "";
                 schedule.course = "";
+                teacher_schedule.sunday.push(schedule);
                 schedule = {
                   "time": "",
                   "year": "",
                   "course": ""
                 }
+                break;  
               }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.sunday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
             }
-          })
+          }
 
-          
-          console.log(teacher_schedule)
+          for(let i=0; i<details.length; i++){
+            schedule.time = "9:40 AM - 10:30 AM";
+            if(details[i].id == third[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.sunday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.sunday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
 
+          for(let i=0; i<details.length; i++){
+            schedule.time = "10:40 AM - 11:30 AM";
+            if(details[i].id == fourth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.sunday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.sunday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "11:30 AM - 12:20 PM";
+            if(details[i].id == fifth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.sunday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.sunday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "12:20 PM - 1:10 PM";
+            if(details[i].id == sixth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.sunday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.sunday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "2:30 PM - 5:00 PM";
+            if(details[i].id == lab[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.sunday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.sunday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
         } 
       })
       
     })
+
+    teacher.monday.map(day_id => {
+      weeks.map(week => {
+        if(week.id == day_id){
+          var first = week.first;
+          var second = week.second;
+          var third = week.third;
+          var fourth = week.fourth;
+          var fifth = week.fifth;
+          var sixth = week.sixth;
+          var lab = week.lab;
+          
+          for(let i=0; i<details.length; i++){
+            schedule.time = "8:00 AM - 8:50 AM";
+            if(details[i].id == first[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.monday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.monday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "8:50 AM - 9:40 AM";
+            if(details[i].id == second[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.monday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.monday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "9:40 AM - 10:30 AM";
+            if(details[i].id == third[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.monday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.monday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "10:40 AM - 11:30 AM";
+            if(details[i].id == fourth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.monday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.monday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "11:30 AM - 12:20 PM";
+            if(details[i].id == fifth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.monday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.monday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "12:20 PM - 1:10 PM";
+            if(details[i].id == sixth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.monday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.monday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "2:30 PM - 5:00 PM";
+            if(details[i].id == lab[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.monday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.monday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        } 
+      })
+      
+    })
+
+    teacher.tuesday.map(day_id => {
+      weeks.map(week => {
+        if(week.id == day_id){
+          var first = week.first;
+          var second = week.second;
+          var third = week.third;
+          var fourth = week.fourth;
+          var fifth = week.fifth;
+          var sixth = week.sixth;
+          var lab = week.lab;
+          
+          for(let i=0; i<details.length; i++){
+            schedule.time = "8:00 AM - 8:50 AM";
+            if(details[i].id == first[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.tuesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.tuesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "8:50 AM - 9:40 AM";
+            if(details[i].id == second[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.tuesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.tuesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "9:40 AM - 10:30 AM";
+            if(details[i].id == third[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.tuesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.tuesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "10:40 AM - 11:30 AM";
+            if(details[i].id == fourth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.tuesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.tuesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "11:30 AM - 12:20 PM";
+            if(details[i].id == fifth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.tuesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.tuesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "12:20 PM - 1:10 PM";
+            if(details[i].id == sixth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.tuesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.tuesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+
+          for(let i=0; i<details.length; i++){
+            schedule.time = "2:30 PM - 5:00 PM";
+            if(details[i].id == lab[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.tuesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.tuesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        } 
+      })      
+    })
+
+    teacher.wednesday.map(day_id => {
+      weeks.map(week => {
+        if(week.id == day_id){
+          var first = week.first;
+          var second = week.second;
+          var third = week.third;
+          var fourth = week.fourth;
+          var fifth = week.fifth;
+          var sixth = week.sixth;
+          var lab = week.lab;
+          
+          for(let i=0; i<details.length; i++){
+            schedule.time = "8:00 AM - 8:50 AM";
+            if(details[i].id == first[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.wednesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.wednesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "8:50 AM - 9:40 AM";
+            if(details[i].id == second[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.wednesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.wednesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "9:40 AM - 10:30 AM";
+            if(details[i].id == third[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.wednesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.wednesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "10:40 AM - 11:30 AM";
+            if(details[i].id == fourth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.wednesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.wednesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "11:30 AM - 12:20 PM";
+            if(details[i].id == fifth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.wednesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.wednesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "12:20 PM - 1:10 PM";
+            if(details[i].id == sixth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.wednesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.wednesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "2:30 PM - 5:00 PM";
+            if(details[i].id == lab[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.wednesday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.wednesday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        } 
+      })      
+    })
     
+    teacher.thursday.map(day_id => {
+      weeks.map(week => {
+        if(week.id == day_id){
+          var first = week.first;
+          var second = week.second;
+          var third = week.third;
+          var fourth = week.fourth;
+          var fifth = week.fifth;
+          var sixth = week.sixth;
+          var lab = week.lab;
+          
+          for(let i=0; i<details.length; i++){
+            schedule.time = "8:00 AM - 8:50 AM";
+            if(details[i].id == first[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.thursday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.thursday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "8:50 AM - 9:40 AM";
+            if(details[i].id == second[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.thursday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.thursday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "9:40 AM - 10:30 AM";
+            if(details[i].id == third[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.thursday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.thursday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "10:40 AM - 11:30 AM";
+            if(details[i].id == fourth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.thursday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.thursday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "11:30 AM - 12:20 PM";
+            if(details[i].id == fifth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.thursday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.thursday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "12:20 PM - 1:10 PM";
+            if(details[i].id == sixth[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.thursday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.thursday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        
+          for(let i=0; i<details.length; i++){
+            schedule.time = "2:30 PM - 5:00 PM";
+            if(details[i].id == lab[0]){
+              if(typeof(details[i].course) == "object"){
+                schedule.year = "";
+                schedule.course = "";
+                teacher_schedule.thursday.push(schedule);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;  
+              }
+              schedule.year = details[i].year;
+              schedule.course = details[i].course;
+              teacher_schedule.thursday.push(schedule);
+              schedule = {
+                "time": "",
+                "year": "",
+                "course": ""
+              }
+              break;
+            }
+          }
+        } 
+      })      
+    })
 
 teachers_schedule.push(teacher_schedule);
-console.log(teachers_schedule)
 })
+
+console.log("teachers_sch", teachers_schedule);
 
 
 const week = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
@@ -218,207 +1097,71 @@ function trigger(day) {
       `;
     teachers_schedule.map((teacher) => {
       let tr = document.createElement("tr");
-      //console.log(teacher[`${day}`])
+      //console.log(teacher[`${day}`][0])
       tr.innerHTML = `
               <th>${teacher.name}</th>
+              <td>${teacher[`${day}`][0].course}</td>
+              <td>${teacher[`${day}`][1].course}</td>
+              <td>${teacher[`${day}`][2].course}</td>
+              <td>${teacher[`${day}`][3].course}</td>
+              <td>${teacher[`${day}`][4].course}</td>
+              <td>${teacher[`${day}`][5].course}</td>
+              <td>${teacher[`${day}`][6].course}</td>
           `;
       table.appendChild(tr);
     });
   }
-  trigger(day);
+trigger(day);
 
+// function showThirdYearRoutine(){
+//   const masterRoutine = document.getElementById("master-routine");
+//   const yearRoutine = document.getElementById("third-year-routine");
 
+//   masterRoutine.style.display = "none";
+//   yearRoutine.style.display = "block";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var teachers_schedule = [];
-
-// for (let i = 0; i < teachers.length; i++) {
-//   let teacher_schedule = {};
-
-//   teacher_schedule.name = teachers[i].name;
-
-//   teacher_schedule.schedule = [{}, {}, {}, {}, {}];
-
-//   let api_schedule_length = teachers[i].schedule.length;
-
-//   for (let j = 0; j < api_schedule_length; j++) {
-//     for (let k = 0; k < weeks.length; k++) {
-//       // for third year only for now, later years will be added later
-//       if (weeks[k].id == teachers[i].schedule[j] && weeks[k].year == 3) {
-//         if (weeks[k].weekname == "Sunday") {
-//           teacher_schedule.weeks_all[0] = weeks[k];
-//         } else if (weeks[k].weekname == "Monday") {
-//           teacher_schedule.weeks_all[1] = weeks[k];
-//         } else if (weeks[k].weekname == "Tuesday") {
-//           teacher_schedule.weeks_all[2] = weeks[k];
-//         } else if (weeks[k].weekname == "Wednesday") {
-//           teacher_schedule.weeks_all[3] = weeks[k];
-//         } else if (weeks[k].weekname == "Thursday") {
-//           teacher_schedule.weeks_all[4] = weeks[k];
-//         }
-//       }
-//     }
-//   }
-
-//   teachers_schedule.push(teacher_schedule);
-// }
-
-//console.log(teachers_schedule);
-
-// const week = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
-// let dayNo = 0;
-// let day = week[dayNo];
-// const dayLabel = document.getElementById("dayLabel");
-// dayLabel.innerText = day;
-
-// function lt() {
-//   if (dayNo > 0) {
-//     dayNo = dayNo - 1;
-//     day = week[dayNo];
-//     dayLabel.innerText = day;
-//     trigger(day);
-//   }
-// }
-// function gt() {
-//   if (dayNo < 4) {
-//     dayNo = dayNo + 1;
-//     day = week[dayNo];
-//     dayLabel.innerText = day;
-//     trigger(day);
-//   }
-// }
-
-// function trigger(day) {
-//   const table = document.getElementById("table");
+//   const table = document.getElementById("third-year-table");
 //   table.innerHTML = `
-//         <tr>
-//             <th>Teachers Name</th>
-//             <th>8:00-8:50</th>
-//             <th>8:50-9:40</th>
-//             <th>9:40-10:30</th>
-//             <th>10:40-11:30</th>
-//             <th>11:30-12:20</th>
-//             <th>12:20-1:10</th>
-//             <th>2:30-5:00</th>
-//         </tr>
-//     `;
-//   teachers.map((teacher) => {
-//     let tr = document.createElement("tr");
-//     tr.innerHTML = `
-//             <th>${teacher["name"]}</th>
-//             <td>${teacher["schedule"][day][0]["course"]}</td>
-//             <td>${teacher["schedule"][day][1]["course"]}</td>
-//             <td>${teacher["schedule"][day][2]["course"]}</td>
-//             <td>${teacher["schedule"][day][3]["course"]}</td>
-//             <td>${teacher["schedule"][day][4]["course"]}</td>
-//             <td>${teacher["schedule"][day][5]["course"]}</td>
-//             <td>${teacher["schedule"][day][6]["course"]}</td>
-//         `;
-//     table.appendChild(tr);
-//   });
-// }
-// trigger(day);
+//       <tr>
+//           <th>Day | Time</th>
+//           <th>8:00-8:50</th>
+//           <th>8:50-9:40</th>
+//           <th>9:40-10:30</th>
+//           <th>10:40-11:30</th>
+//           <th>11:30-12:20</th>
+//           <th>12:20-1:10</th>
+//           <th>2:30-5:00</th>
+//       </tr>
+//   `;
 
-// function getYearRoutine(year){
-//     let year_routine=[
-//         {
+//   var thirdYearRoutine = {
+//     "sunday":[
+//       {
 //         "time": "",
 //         "teacher": "",
 //         "course": ""
-//         },
-//         {
+//       }
+//     ],
+//     "monday":[
+//       {
 //         "time": "",
 //         "teacher": "",
 //         "course": ""
-//         },
-//         {
-//         "time": "",
-//         "teacher": "",
-//         "course": ""
-//         },
-//         {
-//         "time": "",
-//         "teacher": "",
-//         "course": ""
-//         },
-//         {
-//         "time": "",
-//         "teacher": "",
-//         "course": ""
-//         }
-// ];
-//     teachers.map(teacher =>{
-//         console.log(teacher.schedule.sunday)
-//     })
+//       }
+//     ]
+//   }
+
+//   teachers_schedule.map(teacher => {
+
+//   })
+
 // }
 
+// function showMasterRoutine(){
+//   const masterRoutine = document.getElementById("master-routine");
+//   const yearRoutine = document.getElementById("third-year-routine");
 
-
-
+//   masterRoutine.style.display = "block";
+//   yearRoutine.style.display = "none";
+// }
 

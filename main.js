@@ -1,5 +1,6 @@
 const teachers_url = "http://127.0.0.1:8000/teachers/";
 const weeks_url = "http://127.0.0.1:8000/weeks/";
+const details_url = "http://127.0.0.1:8000/details/";
 
 fetch(teachers_url)
   .then((response) => response.json())
@@ -21,21 +22,34 @@ fetch(weeks_url)
     console.log(error);
   });
 
+fetch(details_url)
+  .then((response) => response.json())
+  .then((data) => {
+    //console.log("details: ",data)
+    localStorage.setItem("details", JSON.stringify(data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
 const teachers_list = localStorage.getItem("datas");
 const weeks_list = localStorage.getItem("weeks");
+const details_list = localStorage.getItem("details");
 
 const teachers = JSON.parse(teachers_list);
 const weeks = JSON.parse(weeks_list);
+const details = JSON.parse(details_list);
 
- //console.log("teachers: ",teachers)
- //console.log("weeks: ",weeks);
+//   console.log("teachers: ",teachers)
+//  console.log("weeks: ",weeks);
+//  console.log("details: ",details);
 
 let days = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
 
 var teachers_schedule =[];
 
 teachers.map(teacher => {
-    console.log("teacher", teacher);
+    //console.log("teacher", teacher);
     var teacher_schedule = {
         "id": "",
         "name": "", 
@@ -51,119 +65,236 @@ teachers.map(teacher => {
     teacher_schedule.name = teacher.name;
     teacher_schedule.short_name = teacher.short_name;
 
-    teacher.sunday.map(sch => {
-        //console.log(sch);
-        schedule = {
-            "year": "",
-            "course": "",
-            "start_time": "",
-            "end_time": ""
-        }
-        weeks.map(week => {
-            if(week.id == sch){
-                //console.log(week);
-                schedule.year = week.year;
-                schedule.course = week.course;
-                schedule.start_time = week.starttime;
-                schedule.end_time = week.endtime;
+    //console.log("teacher_schedule",teacher_schedule)
+    var schedule = {
+      "time": "",
+      "year": "",
+      "course": ""
+    }
+    teacher.sunday.map(day_id => {
+      //console.log(day_id);        
+      weeks.map(week => {
+        if(week.id == day_id){
+          console.log(week);
+          var first = week.first;
+          var second = week.second;
+          var third = week.third;
+          var fourth = week.fourth;
+          var fifth = week.fifth;
+          var sixth = week.sixth;
+          var lab = week.lab;
+          
+          first.map(sch => {
+            for(let i=0; i<details.length; i++){
+              if(details[i].id == sch){
+                schedule.time = "8:00 AM - 8:50 AM";
+                schedule.year = details[i].year;
+                schedule.course = details[i].course;
                 teacher_schedule.sunday.push(schedule);
-            }
-        })
-        //console.log("sunday sch: ",teacher_schedule.sunday)
-        
-    })
-
-    teacher.monday.map(sch => {
-        //console.log(sch);
-        schedule = {
-            "year": "",
-            "course": "",
-            "start_time": "",
-            "end_time": ""
-        }
-        weeks.map(week => {
-            //console.log(day);
-            if(week.id == sch){
-                //console.log(week);
-                schedule.year = week.year;
-                schedule.course = week.course;
-                schedule.start_time = week.starttime;
-                schedule.end_time = week.endtime;
-                teacher_schedule.monday.push(schedule);
-            }
-        })
-        //console.log("monday sch", teacher_schedule.monday)     
-    })
-    teacher.tuesday.map(sch => {
-        schedule = {
-            "year": "",
-            "course": "",
-            "start_time": "",
-            "end_time": ""
-        }
-        weeks.map(week => {
-            if(week.id == sch){
-                //console.log(week);
-                schedule.year = week.year;
-                schedule.course = week.course;
-                schedule.start_time = week.starttime;
-                schedule.end_time = week.endtime;
-                teacher_schedule.tuesday.push(schedule);
-            }
-        })  
-        //  console.log(teacher_schedule.tuesday)      
-    })
-    teacher.wednesday.map(sch => {
-        schedule = {
-            "year": "",
-            "course": "",
-            "start_time": "",
-            "end_time": ""
-        }
-        weeks.map(week => {
-            if(week.id == sch){
-                //console.log(sch);
-                schedule.year = week.year;
-                schedule.course = week.course;
-                schedule.start_time = week.starttime;
-                schedule.end_time = week.endtime;
-                teacher_schedule.wednesday.push(schedule);
-                //console.log(teacher_schedule.wednesday)       
                 schedule = {
-                    "year": "",
-                    "course": "",
-                    "start_time": "",
-                    "end_time": ""
+                  "time": "",
+                  "year": "",
+                  "course": ""
                 }
+                break;
+              }else{
+                schedule.time = "8:00 AM - 8:50 AM";
+                schedule.year = "";
+                schedule.course = "";
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+              }              
             }
-        }) 
-        //console.log(teacher_schedule.wednesday)       
-    })
-    teacher.thursday.map(sch => {
-        schedule = {
-            "year": "",
-            "course": "",
-            "start_time": "",
-            "end_time": ""
-        }
-        weeks.map(week => {
-            //console.log(day);
-            if(week.id == sch){
-                //console.log(week);
-                schedule.year = week.year;
-                schedule.course = week.course;
-                schedule.start_time = week.starttime;
-                schedule.end_time = week.endtime;
-                teacher_schedule.thursday.push(schedule);
+          })
+          //console.log(teacher_schedule.sunday)
+
+          second.map(sch => {
+            for(let i=0; i<details.length; i++){
+              if(details[i].id == sch){
+                schedule.time = "8:50 AM - 9:40 AM";
+                schedule.year = details[i].year;
+                schedule.course = details[i].course;
+                teacher_schedule.sunday.push(schedule);
+                //console.log(teacher_schedule.sunday);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;
+              }else{
+                schedule.time = "8:50 AM - 9:40 AM";
+                schedule.year = "";
+                schedule.course = "";
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+              }
             }
-        })        
+          })
+
+          third.map(sch => {
+            for(let i=0; i<details.length; i++){
+              if(details[i].id == sch){
+                schedule.time = "9:40 AM - 10:30 AM";
+                schedule.year = details[i].year;
+                schedule.course = details[i].course;
+                teacher_schedule.sunday.push(schedule);
+                //console.log(teacher_schedule.sunday);
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+                break;
+              }else{
+                schedule.time = "9:40 AM - 10:30 AM";
+                schedule.year = "";
+                schedule.course = "";
+                schedule = {
+                  "time": "",
+                  "year": "",
+                  "course": ""
+                }
+              }
+            }
+          })
+
+          
+          console.log(teacher_schedule)
+
+        } 
+      })
+      
     })
+    
 
-
-
-    teachers_schedule.push(teacher_schedule);
-    //console.log(teachers_schedule)
+teachers_schedule.push(teacher_schedule);
+console.log(teachers_schedule)
 })
+
+
+const week = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
+let dayNo = 0;
+let day = week[dayNo];
+const dayLabel = document.getElementById("dayLabel");
+dayLabel.innerText = day;
+
+function lt() {
+  if (dayNo > 0) {
+    dayNo = dayNo - 1;
+    day = week[dayNo];
+    dayLabel.innerText = day;
+    trigger(day);
+  }
+}
+function gt() {
+  if (dayNo < 4) {
+    dayNo = dayNo + 1;
+    day = week[dayNo];
+    dayLabel.innerText = day;
+    trigger(day);
+  }
+}
+
+function trigger(day) {
+    const table = document.getElementById("master-table");
+    table.innerHTML = `
+          <tr>
+              <th>Teachers Name</th>
+              <th>8:00-8:50</th>
+              <th>8:50-9:40</th>
+              <th>9:40-10:30</th>
+              <th>10:40-11:30</th>
+              <th>11:30-12:20</th>
+              <th>12:20-1:10</th>
+              <th>2:30-5:00</th>
+          </tr>
+      `;
+    teachers_schedule.map((teacher) => {
+      let tr = document.createElement("tr");
+      //console.log(teacher[`${day}`])
+      tr.innerHTML = `
+              <th>${teacher.name}</th>
+          `;
+      table.appendChild(tr);
+    });
+  }
+  trigger(day);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // var teachers_schedule = [];
 

@@ -2175,4 +2175,32 @@ function showMasterRoutine(){
 }
 
 
+// --------------------------- TIME ZONE ----------------------------------------------
+const dateStr = new Date().toString();
+const dateArr = dateStr.split(" ");
+const currentDay = dateArr[0];
+const currentMonth = dateArr[1];
+const currentDate = dateArr[2];
+const currentYear = dateArr[3];
+var currentTime = dateArr[4];
 
+if(currentTime.split(":")[0] > 12){
+  var hourInt = parseInt(currentTime.split(":")[0])-12;
+  var mint = currentTime.split(":")[1];
+  var hourStr = hourInt.toString();
+
+  
+  currentTime = `${hourStr}:${mint} PM`;
+  console.log(hourStr, mint);
+  console.log(typeof(hourStr));
+}else{
+  var hour = currentTime.split(":")[0];
+  var mint = currentTime.split(":")[1];
+  currentTime = `${hour}:${mint} AM`;
+}
+
+document.getElementById("timezone").innerHTML = `
+<p>${currentTime}</p>
+<p>${currentDay}, ${currentDate} ${currentMonth}, ${currentYear}</p>
+`;
+// --------------------------------------------------------------------------------------

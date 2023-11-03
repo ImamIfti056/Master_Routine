@@ -1116,25 +1116,6 @@ function trigger(day) {
 trigger(day);
 
 function getYearRoutine(y){
-  // const masterRoutine = document.getElementById("master-routine");
-  // const yearRoutine = document.getElementById("year-routine");
-
-  // masterRoutine.style.display = "none";
-  // yearRoutine.style.display = "block";
-
-  // const table = document.getElementById("year-table");
-  // table.innerHTML = `
-  //     <tr>
-  //         <th>Day | Time</th>
-  //         <th>8:00-8:50</th>
-  //         <th>8:50-9:40</th>
-  //         <th>9:40-10:30</th>
-  //         <th>10:40-11:30</th>
-  //         <th>11:30-12:20</th>
-  //         <th>12:20-1:10</th>
-  //         <th>2:30-5:00</th>
-  //     </tr>
-  // `;
 
   var firstYearRoutine = {
     "sunday":[
@@ -2152,10 +2133,38 @@ function showYearRoutine(year){
         <th>2:30-5:00</th>
     </tr>
   `;
+  
+  var routine = null;
+  if(year == "1"){
+    routine = getYearRoutine(year).firstYearRoutine;
+  }else if(year == "2"){
+    routine = getYearRoutine(year).secondYearRoutine;
+  }else if(year == "3"){
+    routine = getYearRoutine(year).thirdYearRoutine;
+  }else if(year == "4"){
+    routine = getYearRoutine(year).fourthYearRoutine;
+  }
 
-  const routine = getYearRoutine(year);
-  console.log(routine);
+  for(day in routine){
+    //console.log(day,":",routine[day]);
+    const tr = document.createElement("tr");
+
+    tr.innerHTML=`
+      <th>${day}</th>
+      <td>${routine[day][0].teacher} <br> ${routine[day][0].course}</td>
+      <td>${routine[day][1].teacher} <br> ${routine[day][1].course}</td>
+      <td>${routine[day][2].teacher} <br> ${routine[day][2].course}</td>
+      <td>${routine[day][3].teacher} <br> ${routine[day][3].course}</td>
+      <td>${routine[day][4].teacher} <br> ${routine[day][4].course}</td>
+      <td>${routine[day][5].teacher} <br> ${routine[day][5].course}</td>
+      <td>${routine[day][6].teacher} <br> ${routine[day][6].course}</td>
+    `;
+
+    table.appendChild(tr);
+  }
+
 }
+
 
 function showMasterRoutine(){
   const masterRoutine = document.getElementById("master-routine");

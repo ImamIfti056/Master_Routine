@@ -60,10 +60,17 @@ td, th{
     /* display: none; */
 }
 
-#third-year-routine{
+#year-routine{
     flex: 4;
     margin: 20px auto;
     display: none;
+}
+
+.table-title{
+    font-weight: bold;
+    font-size: 30px;
+    margin: 20px 0;
+    text-align: center;
 }
 
 #bottom{

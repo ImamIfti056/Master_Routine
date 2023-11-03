@@ -1,3 +1,7 @@
+:root{
+    --primary: #4CAF50;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -5,27 +9,37 @@
 }
 
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
 h1{
     text-transform: capitalize;
-    padding: 20px;
-    margin: 20px auto;
-    width: 50%;
-    font-size: 24px;
+}
+
+li{
+    list-style: none;
 }
 
 table{
     margin: 0 auto;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
 }
+
 tr:nth-child(odd){
-    background-color: #ccc;
+    background-color: #ededed;
+}
+
+tr:first-child{
+    background-color: var(--primary);
 }
 td, th{
     padding: 10px;
+    text-align: center;
 }
+
+/* .table-heading{
+    background-color: var(--primary);
+} */
 
 .flex{
     display: flex;
@@ -40,25 +54,58 @@ td, th{
     font-size: 20px;
 }
 
-#top{
-    background-color: #ddd;
+header{
+    background-color: var(--primary);
+    padding: 10px 30px;
 }
+
+nav ul li button{
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 6px 8px;
+    margin: 10px;
+}       
 
 #teachers-list{
     flex: 1;
     background-color: #eee;
-    padding: 20px 30px;
-    /* display: none; */
+    padding: 20px;
+    
+}
+
+#teachers-list h1{
+    text-align: center;
+    margin-bottom: 14px;
 }
 #teachers-list ol li{
-    margin: 10px 0;
-    font-size: 16px;
+    margin: 8px 0;
+    font-size: 14px;
 }
 
 #master-routine{
     flex: 4;
-    /* display: none; */
 }
+
+#master-routine h1{
+    text-align: center;
+    margin: 20px 0;
+    font-size: 30px;
+}
+
+.btn-arrow{
+    border: none;
+    border: 2px solid var(--primary);
+    border-radius: 10%;
+    color: var(--primary);
+    font-size: 30px;
+    padding: 0px 20px;
+    background: white;
+}
+
 
 #year-routine{
     flex: 4;
@@ -71,7 +118,4 @@ td, th{
     font-size: 30px;
     margin: 20px 0;
     text-align: center;
-}
-
-#bottom{
 }

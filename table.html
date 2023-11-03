@@ -8,7 +8,20 @@
     <title>Document</title>
 </head>
 <body>
-    <section id="top" class="flex">
+    <header>
+        <nav>
+            <ul class="flex">
+                <li><button onclick="showYearRoutine(1)">First Year Routine</button></li>
+                <li><button onclick="showYearRoutine(2)">Second Year Routine</button></li>
+                <li><button onclick="showYearRoutine(3)">Third Year Routine</button></li>
+                <li><button onclick="showYearRoutine(4)">Fourth Year Routine</button></li>
+                <li><button onclick="showMasterRoutine()">Master Routine</button></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section class="flex">
         <section id="teachers-list">
             <h1>Teachers List</h1>
             <ol type="1">
@@ -21,7 +34,7 @@
         </section>
     
         <section id="master-routine">
-            <h1><button class="btn" onclick="lt()">&lt;</button> <span id="dayLabel"></span> <button class="btn" onclick="gt()">&gt;</button></h1>
+            <h1><button class="btn btn-arrow" onclick="lt()">&lt;</button> <span id="dayLabel"></span> <button class="btn btn-arrow" onclick="gt()">&gt;</button></h1>
             <table id="master-table">
                 
             </table>
@@ -33,15 +46,6 @@
                 
             </table>
         </section>    
-    </section>
-
-    <section id="bottom">
-        <h3>Manage Routine</h3>
-        <button class="btn" onclick="showYearRoutine(1)">First Year Routine</button>
-        <button class="btn" onclick="showYearRoutine(2)">Second Year Routine</button>
-        <button class="btn" onclick="showYearRoutine(3)">Third Year Routine</button>
-        <button class="btn" onclick="showYearRoutine(4)">Fourth Year Routine</button>
-        <button class="btn" onclick="showMasterRoutine()">Show Master routine</button>
     </section>
 
     <script src="main.js"></script>

@@ -1058,6 +1058,7 @@ teachers_schedule.push(teacher_schedule);
 })
 
 //console.log("teachers_sch", teachers_schedule);
+// ------------------------------------------------------------------------------------------------------
 
 
 const week = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
@@ -1099,18 +1100,46 @@ function trigger(day) {
       `;
     teachers_schedule.map((teacher) => {
       let tr = document.createElement("tr");
-      //console.log(teacher[`${day}`][0])
-      tr.innerHTML = `
-              <th>${teacher.name}</th>
-              <td>${teacher[`${day}`][0].course}</td>
-              <td>${teacher[`${day}`][1].course}</td>
-              <td>${teacher[`${day}`][2].course}</td>
-              <td>${teacher[`${day}`][3].course}</td>
-              <td>${teacher[`${day}`][4].course}</td>
-              <td>${teacher[`${day}`][5].course}</td>
-              <td>${teacher[`${day}`][6].course}</td>
-          `;
-      table.appendChild(tr);
+      //console.log(teacher[`${day}`][4].course);
+      let  lab1 = teacher[`${day}`][1].course;
+      let  lab2 = teacher[`${day}`][4].course;
+      if(lab1[lab1.length-1]%2 == 0){
+        //console.log(lab1);
+        tr.innerHTML = `
+                <th>${teacher.name}</th>
+                <td colspan="3" class="lab">${lab1}</td>
+                                <td>${teacher[`${day}`][3].course}</td>
+                <td>${teacher[`${day}`][4].course}</td>
+                <td>${teacher[`${day}`][5].course}</td>
+                <td>${teacher[`${day}`][6].course}</td>
+            `;
+        table.appendChild(tr);
+      }
+      else if(lab2[lab2.length-1]%2 == 0){
+        //console.log(lab2);
+        tr.innerHTML = `
+                <th>${teacher.name}</th>
+                <td>${teacher[`${day}`][0].course}</td>
+                <td>${teacher[`${day}`][1].course}</td>
+                <td>${teacher[`${day}`][2].course}</td>
+                <td colspan="3" class="lab">${lab2}</td>
+                <td>${teacher[`${day}`][6].course}</td>
+            `;
+        table.appendChild(tr);
+      }
+      else{
+        tr.innerHTML = `
+                <th>${teacher.name}</th>
+                <td>${teacher[`${day}`][0].course}</td>
+                <td>${teacher[`${day}`][1].course}</td>
+                <td>${teacher[`${day}`][2].course}</td>
+                <td>${teacher[`${day}`][3].course}</td>
+                <td>${teacher[`${day}`][4].course}</td>
+                <td>${teacher[`${day}`][5].course}</td>
+                <td>${teacher[`${day}`][6].course}</td>
+            `;
+        table.appendChild(tr);
+      }
     });
   }
 trigger(day);
@@ -1873,52 +1902,16 @@ function getYearRoutine(y){
 // ------------------first Year routine-------------------------
   teachers_schedule.map(teacher => {
     for(let i=0; i<7; i++){
-      if(teacher.sunday[i].year == "1"){
-        for(let j=0; j<7; j++){
-          if(teacher.sunday[i].time == firstYearRoutine.sunday[j].time){
-            firstYearRoutine.sunday[j].course = teacher.sunday[j].course;
-            firstYearRoutine.sunday[j].teacher = teacher.short_name;
-            //console.log("sun dukse",firstYearRoutine.sunday[j])
-          }
+      for(d in teacher){
+        if(d == "id" || d== "name" || d=="short_name"){
+          continue;
         }
-      }
-      if(teacher.monday[i].year == "1"){
-        //console.log("mon",teacher.monday[i]);
-        for(let j=0; j<7; j++){
-          if(teacher.monday[i].time == firstYearRoutine.monday[j].time){
-            firstYearRoutine.monday[j].course = teacher.monday[j].course;
-            firstYearRoutine.monday[j].teacher = teacher.short_name;
-            console.log("mon dukse",firstYearRoutine.monday[j])
-          }
-        }
-
-      }
-      if(teacher.tuesday[i].year == "1"){
-        //console.log("tues", teacher.tuesday[i]);
-        for(let j=0; j<7; j++){
-          if(teacher.tuesday[i].time == firstYearRoutine.tuesday[j].time){
-            firstYearRoutine.tuesday[j].course = teacher.tuesday[j].course;
-            firstYearRoutine.tuesday[j].teacher = teacher.short_name;
-            console.log("tues dukse",firstYearRoutine.tuesday[j])
-          }
-        }
-      }
-      if(teacher.wednesday[i].year == "1"){
-        //console.log("wednes",teacher.wednesday[i]);
-        for(let j=0; j<7; j++){
-          if(teacher.wednesday[i].time == firstYearRoutine.wednesday[j].time){
-            firstYearRoutine.wednesday[j].course = teacher.wednesday[j].course;
-            firstYearRoutine.wednesday[j].teacher = teacher.short_name;
-            console.log("wednes dukse",firstYearRoutine.wednesday[j])
-          }
-        }
-      }
-      if(teacher.thursday[i].year == "1"){
-        for(let j=0; j<7; j++){
-          if(teacher.thursday[i].time == firstYearRoutine.thursday[j].time){
-            firstYearRoutine.thursday[j].course = teacher.thursday[j].course;
-            firstYearRoutine.thursday[j].teacher = teacher.short_name;
-            //console.log("thurs dukse",firstYearRoutine.thursday[j])
+        if(teacher[d][i].year == "1"){
+          for(let j=0; j<7; j++){
+            if(teacher[d][i].time == firstYearRoutine[d][j].time){
+              firstYearRoutine[d][j].course = teacher[d][j].course;
+              firstYearRoutine[d][j].teacher = teacher.short_name;
+            }
           }
         }
       }
@@ -1929,52 +1922,16 @@ function getYearRoutine(y){
 // -------------second year routine---------------
   teachers_schedule.map(teacher => {
     for(let i=0; i<7; i++){
-      if(teacher.sunday[i].year == "2"){
-        for(let j=0; j<7; j++){
-          if(teacher.sunday[i].time == secondYearRoutine.sunday[j].time){
-            secondYearRoutine.sunday[j].course = teacher.sunday[j].course;
-            secondYearRoutine.sunday[j].teacher = teacher.short_name;
-            //console.log("2sun dukse",secondYearRoutine.sunday[j])
-          }
+      for(d in teacher){
+        if(d == "id" || d== "name" || d=="short_name"){
+          continue;
         }
-      }
-      if(teacher.monday[i].year == "2"){
-        //console.log("mon",teacher.monday[i]);
-        for(let j=0; j<7; j++){
-          if(teacher.monday[i].time == secondYearRoutine.monday[j].time){
-            secondYearRoutine.monday[j].course = teacher.monday[j].course;
-            secondYearRoutine.monday[j].teacher = teacher.short_name;
-            //console.log("2mon dukse",secondYearRoutine.monday[j])
-          }
-        }
-    
-      }
-      if(teacher.tuesday[i].year == "2"){
-        //console.log("tues", teacher.tuesday[i]);
-        for(let j=0; j<7; j++){
-          if(teacher.tuesday[i].time == secondYearRoutine.tuesday[j].time){
-            secondYearRoutine.tuesday[j].course = teacher.tuesday[j].course;
-            secondYearRoutine.tuesday[j].teacher = teacher.short_name;
-            //console.log("2tues dukse",secondYearRoutine.tuesday[j])
-          }
-        }
-      }
-      if(teacher.wednesday[i].year == "2"){
-        //console.log("wednes",teacher.wednesday[i]);
-        for(let j=0; j<7; j++){
-          if(teacher.wednesday[i].time == secondYearRoutine.wednesday[j].time){
-            secondYearRoutine.wednesday[j].course = teacher.wednesday[j].course;
-            secondYearRoutine.wednesday[j].teacher = teacher.short_name;
-            //console.log("2wednes dukse",secondYearRoutine.wednesday[j])
-          }
-        }
-      }
-      if(teacher.thursday[i].year == "2"){
-        for(let j=0; j<7; j++){
-          if(teacher.thursday[i].time == secondYearRoutine.thursday[j].time){
-            secondYearRoutine.thursday[j].course = teacher.thursday[j].course;
-            secondYearRoutine.thursday[j].teacher = teacher.short_name;
-            //console.log("2thurs dukse",secondYearRoutine.thursday[j])
+        if(teacher[d][i].year == "2"){
+          for(let j=0; j<7; j++){
+            if(teacher[d][i].time == secondYearRoutine[d][j].time){
+              secondYearRoutine[d][j].course = teacher[d][j].course;
+              secondYearRoutine[d][j].teacher = teacher.short_name;
+            }
           }
         }
       }
@@ -1986,51 +1943,16 @@ function getYearRoutine(y){
   teachers_schedule.map(teacher => {
     // i, j indicates period number
     for(let i=0; i<7; i++){
-      if(teacher.sunday[i].year == "3"){
-        for(let j=0; j<7; j++){
-          if(teacher.sunday[i].time == thirdYearRoutine.sunday[j].time){
-            thirdYearRoutine.sunday[j].course = teacher.sunday[j].course;
-            thirdYearRoutine.sunday[j].teacher = teacher.short_name;
-            //console.log("3sun dukse",thirdYearRoutine.sunday[j])
-          }
+      for(d in teacher){
+        if(d == "id" || d== "name" || d=="short_name"){
+          continue;
         }
-      }
-      if(teacher.monday[i].year == "3"){
-        //console.log("mon",teacher.monday[i]);
-        for(let j=0; j<7; j++){
-          if(teacher.monday[i].time == thirdYearRoutine.monday[j].time){
-            thirdYearRoutine.monday[j].course = teacher.monday[j].course;
-            thirdYearRoutine.monday[j].teacher = teacher.short_name;
-            //console.log("3mon dukse",thirdYearRoutine.monday[j])
-          }
-        }
-    
-      }
-      if(teacher.tuesday[i].year == "3"){
-        for(let j=0; j<7; j++){
-          if(teacher.tuesday[i].time == thirdYearRoutine.tuesday[j].time){
-            thirdYearRoutine.tuesday[j].course = teacher.tuesday[j].course;
-            thirdYearRoutine.tuesday[j].teacher = teacher.short_name;
-            //console.log("3tues dukse",thirdYearRoutine.tuesday[j])
-          }
-        }
-      }
-      if(teacher.wednesday[i].year == "3"){
-        //console.log("wednes",teacher.wednesday[i]);
-        for(let j=0; j<7; j++){
-          if(teacher.wednesday[i].time == thirdYearRoutine.wednesday[j].time){
-            thirdYearRoutine.wednesday[j].course = teacher.wednesday[j].course;
-            thirdYearRoutine.wednesday[j].teacher = teacher.short_name;
-            //console.log("3wednes dukse",thirdYearRoutine.wednesday[j])
-          }
-        }
-      }
-      if(teacher.thursday[i].year == "3"){
-        for(let j=0; j<7; j++){
-          if(teacher.thursday[i].time == thirdYearRoutine.thursday[j].time){
-            thirdYearRoutine.thursday[j].course = teacher.thursday[j].course;
-            thirdYearRoutine.thursday[j].teacher = teacher.short_name;
-            //console.log("3thurs dukse",thirdYearRoutine.thursday[j])
+        if(teacher[d][i].year == "3"){
+          for(let j=0; j<7; j++){
+            if(teacher[d][i].time == thirdYearRoutine[d][j].time){
+              thirdYearRoutine[d][j].course = teacher[d][j].course;
+              thirdYearRoutine[d][j].teacher = teacher.short_name;
+            }
           }
         }
       }
@@ -2042,51 +1964,16 @@ function getYearRoutine(y){
   teachers_schedule.map(teacher => {
     // i, j indicates period number
     for(let i=0; i<7; i++){
-      if(teacher.sunday[i].year == "4"){
-        for(let j=0; j<7; j++){
-          if(teacher.sunday[i].time == fourthYearRoutine.sunday[j].time){
-            fourthYearRoutine.sunday[j].course = teacher.sunday[j].course;
-            fourthYearRoutine.sunday[j].teacher = teacher.short_name;
-            //console.log("4sun dukse",fourthYearRoutine.sunday[j])
-          }
+      for(d in teacher){
+        if(d == "id" || d== "name" || d=="short_name"){
+          continue;
         }
-      }
-      if(teacher.monday[i].year == "4"){
-        //console.log("mon",teacher.monday[i]);
-        for(let j=0; j<7; j++){
-          if(teacher.monday[i].time == fourthYearRoutine.monday[j].time){
-            fourthYearRoutine.monday[j].course = teacher.monday[j].course;
-            fourthYearRoutine.monday[j].teacher = teacher.short_name;
-            console.log("4mon dukse",fourthYearRoutine.monday[j])
-          }
-        }
-    
-      }
-      if(teacher.tuesday[i].year == "4"){
-        for(let j=0; j<7; j++){
-          if(teacher.tuesday[i].time == fourthYearRoutine.tuesday[j].time){
-            fourthYearRoutine.tuesday[j].course = teacher.tuesday[j].course;
-            fourthYearRoutine.tuesday[j].teacher = teacher.short_name;
-            console.log("4tues dukse",fourthYearRoutine.tuesday[j])
-          }
-        }
-      }
-      if(teacher.wednesday[i].year == "4"){
-        //console.log("wednes",teacher.wednesday[i]);
-        for(let j=0; j<7; j++){
-          if(teacher.wednesday[i].time == fourthYearRoutine.wednesday[j].time){
-            fourthYearRoutine.wednesday[j].course = teacher.wednesday[j].course;
-            fourthYearRoutine.wednesday[j].teacher = teacher.short_name;
-            console.log("4wednes dukse",fourthYearRoutine.wednesday[j])
-          }
-        }
-      }
-      if(teacher.thursday[i].year == "4"){
-        for(let j=0; j<7; j++){
-          if(teacher.thursday[i].time == fourthYearRoutine.thursday[j].time){
-            fourthYearRoutine.thursday[j].course = teacher.thursday[j].course;
-            fourthYearRoutine.thursday[j].teacher = teacher.short_name;
-            console.log("4thurs dukse",fourthYearRoutine.thursday[j])
+        if(teacher[d][i].year == "4"){
+          for(let j=0; j<7; j++){
+            if(teacher[d][i].time == fourthYearRoutine[d][j].time){
+              fourthYearRoutine[d][j].course = teacher[d][j].course;
+              fourthYearRoutine[d][j].teacher = teacher.short_name;
+            }
           }
         }
       }
@@ -2148,19 +2035,46 @@ function showYearRoutine(year){
   for(day in routine){
     //console.log(day,":",routine[day]);
     const tr = document.createElement("tr");
-
-    tr.innerHTML=`
-      <th>${day}</th>
-      <td>${routine[day][0].teacher} <br> ${routine[day][0].course}</td>
-      <td>${routine[day][1].teacher} <br> ${routine[day][1].course}</td>
-      <td>${routine[day][2].teacher} <br> ${routine[day][2].course}</td>
-      <td>${routine[day][3].teacher} <br> ${routine[day][3].course}</td>
-      <td>${routine[day][4].teacher} <br> ${routine[day][4].course}</td>
-      <td>${routine[day][5].teacher} <br> ${routine[day][5].course}</td>
-      <td>${routine[day][6].teacher} <br> ${routine[day][6].course}</td>
-    `;
-
-    table.appendChild(tr);
+    //console.log(routine[day][1].course);
+    let  lab1 = routine[day][1].course;
+    let  lab2 = routine[day][4].course;
+    if(lab1[lab1.length-1]%2 == 0){
+      console.log(lab1);
+      tr.innerHTML=`
+        <th>${day}</th>
+        <td class="lab" colspan="3">${routine[day][0].teacher} <br> ${lab1}</td>
+        <td>${routine[day][3].teacher} <br> ${routine[day][3].course}</td>
+        <td>${routine[day][4].teacher} <br> ${routine[day][4].course}</td>
+        <td>${routine[day][5].teacher} <br> ${routine[day][5].course}</td>
+        <td>${routine[day][6].teacher} <br> ${routine[day][6].course}</td>
+      `;
+      table.appendChild(tr);
+    }
+    else if(lab2[lab2.length-1]%2 == 0){
+      console.log(lab2);
+      tr.innerHTML=`
+        <th>${day}</th>
+        <td>${routine[day][0].teacher} <br> ${routine[day][0].course}</td>
+        <td>${routine[day][1].teacher} <br> ${routine[day][1].course}</td>
+        <td>${routine[day][2].teacher} <br> ${routine[day][2].course}</td>
+        <td class="lab" colspan="3">${routine[day][3].teacher} <br> ${lab2}</td>
+        <td>${routine[day][6].teacher} <br> ${routine[day][6].course}</td>
+      `;
+      table.appendChild(tr);
+    }
+    else{
+      tr.innerHTML=`
+        <th>${day}</th>
+        <td>${routine[day][0].teacher} <br> ${routine[day][0].course}</td>
+        <td>${routine[day][1].teacher} <br> ${routine[day][1].course}</td>
+        <td>${routine[day][2].teacher} <br> ${routine[day][2].course}</td>
+        <td>${routine[day][3].teacher} <br> ${routine[day][3].course}</td>
+        <td>${routine[day][4].teacher} <br> ${routine[day][4].course}</td>
+        <td>${routine[day][5].teacher} <br> ${routine[day][5].course}</td>
+        <td>${routine[day][6].teacher} <br> ${routine[day][6].course}</td>
+      `;
+      table.appendChild(tr);
+    }
   }
 
 }
@@ -2200,7 +2114,7 @@ if(currentTime.split(":")[0] > 12){
 }
 
 document.getElementById("timezone").innerHTML = `
-<p>${currentTime}</p>
-<p>${currentDay}, ${currentDate} ${currentMonth}, ${currentYear}</p>
+${currentTime} <br>
+${currentDay}, ${currentDate} ${currentMonth}, ${currentYear}
 `;
 // --------------------------------------------------------------------------------------

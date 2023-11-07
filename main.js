@@ -1061,6 +1061,21 @@ teachers_schedule.push(teacher_schedule);
 // ------------------------------------------------------------------------------------------------------
 
 
+// ----------------------------------SHOW TEACHERS LIST------------------------------------
+const listSection = document.getElementById("teachers-list");
+const ol = document.createElement("ol");
+
+teachers_schedule.map(teacher => {
+  console.log(teacher.short_name, '-', teacher.name);
+  const li = document.createElement("li");
+  li.innerText = teacher.short_name + ' - ' + teacher.name;
+  ol.appendChild(li);
+})
+
+listSection.appendChild(ol);
+
+// ----------------------------------------------------------------------------------------
+
 const week = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
 let dayNo = 0;
 let day = week[dayNo];

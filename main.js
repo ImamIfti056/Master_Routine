@@ -40,16 +40,11 @@ const teachers = JSON.parse(teachers_list);
 const weeks = JSON.parse(weeks_list);
 const details = JSON.parse(details_list);
 
-//   console.log("teachers: ",teachers)
-//  console.log("weeks: ",weeks);
-//  console.log("details: ",details);
-
-
 // ---------------------- MAIN DATASET -----------------------------------
+const periods = ["8:00 AM - 8:50 AM", "8:50 AM - 9:40 AM", "9:40 AM - 10:30 AM", "10:40 AM - 11:30 AM", "11:30 AM - 12:20 PM", "12:20 PM - 1:10 PM",  "2:30 PM - 5:00 PM"];
 var teachers_schedule =[];
 
 teachers.map(teacher => {
-    //console.log("teacher", teacher);
     var teacher_schedule = {
         "id": "",
         "name": "", 
@@ -64,1001 +59,87 @@ teachers.map(teacher => {
     teacher_schedule.id = teacher.id;
     teacher_schedule.name = teacher.name;
     teacher_schedule.short_name = teacher.short_name;
-
-    //console.log("teacher_schedule",teacher_schedule)
     var schedule = {
       "time": "",
       "year": "",
       "course": ""
     }
 
-    teacher.sunday.map(day_id => {      
-      weeks.map(week => {
-        if(week.id == day_id){
-          var first = week.first;
-          var second = week.second;
-          var third = week.third;
-          var fourth = week.fourth;
-          var fifth = week.fifth;
-          var sixth = week.sixth;
-          var lab = week.lab;
-          
-          for(let i=0; i<details.length; i++){
-            schedule.time = "8:00 AM - 8:50 AM";
-            if(details[i].id == first[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.sunday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.sunday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
+    for(d in teacher){
+      if(d == "id" || d== "name" || d=="short_name"){
+        continue;
+      }
+      teacher[d].map(day_id => {      
+        weeks.map(week => {
+          if(week.id == day_id){
+            var period = [week.first[0], week.second[0], week.third[0], week.fourth[0], week.fifth[0], week.sixth[0], week.lab[0]];
 
-          for(let i=0; i<details.length; i++){
-            schedule.time = "8:50 AM - 9:40 AM";
-            if(details[i].id == second[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.sunday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
+            for(let k=0; k<periods.length; k++){
+              for(let i=0; i<details.length; i++){
+                schedule.time = periods[k];
+                if(details[i].id == period[k]){
+                  if(typeof(details[i].course) == "object"){
+                    schedule.year = "";
+                    schedule.course = "";
+                    teacher_schedule[d].push(schedule);
+                    schedule = {
+                      "time": "",
+                      "year": "",
+                      "course": ""
+                    }
+                    break;  
+                  }
+                  schedule.year = details[i].year;
+                  schedule.course = details[i].course;
+                  teacher_schedule[d].push(schedule);
+                  schedule = {
+                    "time": "",
+                    "year": "",
+                    "course": ""
+                  }
+                  break;
                 }
-                break;  
               }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.sunday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
             }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "9:40 AM - 10:30 AM";
-            if(details[i].id == third[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.sunday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.sunday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "10:40 AM - 11:30 AM";
-            if(details[i].id == fourth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.sunday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.sunday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "11:30 AM - 12:20 PM";
-            if(details[i].id == fifth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.sunday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.sunday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "12:20 PM - 1:10 PM";
-            if(details[i].id == sixth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.sunday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.sunday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "2:30 PM - 5:00 PM";
-            if(details[i].id == lab[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.sunday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.sunday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        } 
+          } 
+        })
+        
       })
-      
-    })
-
-    teacher.monday.map(day_id => {
-      weeks.map(week => {
-        if(week.id == day_id){
-          var first = week.first;
-          var second = week.second;
-          var third = week.third;
-          var fourth = week.fourth;
-          var fifth = week.fifth;
-          var sixth = week.sixth;
-          var lab = week.lab;
-          
-          for(let i=0; i<details.length; i++){
-            schedule.time = "8:00 AM - 8:50 AM";
-            if(details[i].id == first[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.monday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.monday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "8:50 AM - 9:40 AM";
-            if(details[i].id == second[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.monday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.monday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "9:40 AM - 10:30 AM";
-            if(details[i].id == third[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.monday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.monday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "10:40 AM - 11:30 AM";
-            if(details[i].id == fourth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.monday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.monday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "11:30 AM - 12:20 PM";
-            if(details[i].id == fifth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.monday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.monday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "12:20 PM - 1:10 PM";
-            if(details[i].id == sixth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.monday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.monday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "2:30 PM - 5:00 PM";
-            if(details[i].id == lab[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.monday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.monday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        } 
-      })
-      
-    })
-
-    teacher.tuesday.map(day_id => {
-      weeks.map(week => {
-        if(week.id == day_id){
-          var first = week.first;
-          var second = week.second;
-          var third = week.third;
-          var fourth = week.fourth;
-          var fifth = week.fifth;
-          var sixth = week.sixth;
-          var lab = week.lab;
-          
-          for(let i=0; i<details.length; i++){
-            schedule.time = "8:00 AM - 8:50 AM";
-            if(details[i].id == first[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.tuesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.tuesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "8:50 AM - 9:40 AM";
-            if(details[i].id == second[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.tuesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.tuesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "9:40 AM - 10:30 AM";
-            if(details[i].id == third[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.tuesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.tuesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "10:40 AM - 11:30 AM";
-            if(details[i].id == fourth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.tuesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.tuesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "11:30 AM - 12:20 PM";
-            if(details[i].id == fifth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.tuesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.tuesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "12:20 PM - 1:10 PM";
-            if(details[i].id == sixth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.tuesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.tuesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-
-          for(let i=0; i<details.length; i++){
-            schedule.time = "2:30 PM - 5:00 PM";
-            if(details[i].id == lab[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.tuesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.tuesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        } 
-      })      
-    })
-
-    teacher.wednesday.map(day_id => {
-      weeks.map(week => {
-        if(week.id == day_id){
-          var first = week.first;
-          var second = week.second;
-          var third = week.third;
-          var fourth = week.fourth;
-          var fifth = week.fifth;
-          var sixth = week.sixth;
-          var lab = week.lab;
-          
-          for(let i=0; i<details.length; i++){
-            schedule.time = "8:00 AM - 8:50 AM";
-            if(details[i].id == first[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.wednesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.wednesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "8:50 AM - 9:40 AM";
-            if(details[i].id == second[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.wednesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.wednesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "9:40 AM - 10:30 AM";
-            if(details[i].id == third[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.wednesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.wednesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "10:40 AM - 11:30 AM";
-            if(details[i].id == fourth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.wednesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.wednesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "11:30 AM - 12:20 PM";
-            if(details[i].id == fifth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.wednesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.wednesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "12:20 PM - 1:10 PM";
-            if(details[i].id == sixth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.wednesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.wednesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "2:30 PM - 5:00 PM";
-            if(details[i].id == lab[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.wednesday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.wednesday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        } 
-      })      
-    })
-    
-    teacher.thursday.map(day_id => {
-      weeks.map(week => {
-        if(week.id == day_id){
-          var first = week.first;
-          var second = week.second;
-          var third = week.third;
-          var fourth = week.fourth;
-          var fifth = week.fifth;
-          var sixth = week.sixth;
-          var lab = week.lab;
-          
-          for(let i=0; i<details.length; i++){
-            schedule.time = "8:00 AM - 8:50 AM";
-            if(details[i].id == first[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.thursday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.thursday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "8:50 AM - 9:40 AM";
-            if(details[i].id == second[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.thursday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.thursday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "9:40 AM - 10:30 AM";
-            if(details[i].id == third[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.thursday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.thursday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "10:40 AM - 11:30 AM";
-            if(details[i].id == fourth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.thursday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.thursday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "11:30 AM - 12:20 PM";
-            if(details[i].id == fifth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.thursday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.thursday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "12:20 PM - 1:10 PM";
-            if(details[i].id == sixth[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.thursday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.thursday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        
-          for(let i=0; i<details.length; i++){
-            schedule.time = "2:30 PM - 5:00 PM";
-            if(details[i].id == lab[0]){
-              if(typeof(details[i].course) == "object"){
-                schedule.year = "";
-                schedule.course = "";
-                teacher_schedule.thursday.push(schedule);
-                schedule = {
-                  "time": "",
-                  "year": "",
-                  "course": ""
-                }
-                break;  
-              }
-              schedule.year = details[i].year;
-              schedule.course = details[i].course;
-              teacher_schedule.thursday.push(schedule);
-              schedule = {
-                "time": "",
-                "year": "",
-                "course": ""
-              }
-              break;
-            }
-          }
-        } 
-      })      
-    })
+    }
 
 teachers_schedule.push(teacher_schedule);
 })
-
-//console.log("teachers_sch", teachers_schedule);
 // ------------------------------------------------------------------------------------------------------
+
+// --------------------------- TIME ZONE ----------------------------------------------
+const dateStr = new Date().toString();
+const dateArr = dateStr.split(" ");
+const currentDay = dateArr[0];
+const currentMonth = dateArr[1];
+const currentDate = dateArr[2];
+const currentYear = dateArr[3];
+var currentTime = dateArr[4];
+
+if(currentTime.split(":")[0] > 12){
+  var hourInt = parseInt(currentTime.split(":")[0])-12;
+  var mint = currentTime.split(":")[1];
+  var hourStr = hourInt.toString();
+
+  
+  currentTime = `${hourStr}:${mint} PM`;
+  console.log(hourStr, mint);
+  console.log(typeof(hourStr));
+}else{
+  var hour = currentTime.split(":")[0];
+  var mint = currentTime.split(":")[1];
+  currentTime = `${hour}:${mint} AM`;
+}
+
+document.getElementById("timezone").innerHTML = `
+${currentTime} <br>
+${currentDay}, ${currentDate} ${currentMonth}, ${currentYear}
+`;
+// --------------------------------------------------------------------------------------
 
 
 // ----------------------------------SHOW TEACHERS LIST------------------------------------
@@ -1066,16 +147,15 @@ const listSection = document.getElementById("teachers-list");
 const ol = document.createElement("ol");
 
 teachers_schedule.map(teacher => {
-  console.log(teacher.short_name, '-', teacher.name);
   const li = document.createElement("li");
   li.innerText = teacher.short_name + ' - ' + teacher.name;
   ol.appendChild(li);
 })
 
 listSection.appendChild(ol);
-
 // ----------------------------------------------------------------------------------------
 
+// -------------------- SHOW MASTER ROUTINE----------------------------------------------------
 const week = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
 let dayNo = 0;
 let day = week[dayNo];
@@ -1159,6 +239,16 @@ function trigger(day) {
   }
 trigger(day);
 
+function showMasterRoutine(){
+  const masterRoutine = document.getElementById("master-routine");
+  const yearRoutine = document.getElementById("year-routine");
+
+  masterRoutine.style.display = "block";
+  yearRoutine.style.display = "none";
+}
+// ----------------------------------------------------------------------------------------------------------------
+
+// ---------------------------------------YEAR ROUTINE-------------------------------------------------------------
 function getYearRoutine(y){
 
   var firstYearRoutine = {
@@ -2054,7 +1144,6 @@ function showYearRoutine(year){
     let  lab1 = routine[day][1].course;
     let  lab2 = routine[day][4].course;
     if(lab1[lab1.length-1]%2 == 0){
-      console.log(lab1);
       tr.innerHTML=`
         <th>${day}</th>
         <td class="lab" colspan="3">${routine[day][0].teacher} <br> ${lab1}</td>
@@ -2066,7 +1155,6 @@ function showYearRoutine(year){
       table.appendChild(tr);
     }
     else if(lab2[lab2.length-1]%2 == 0){
-      console.log(lab2);
       tr.innerHTML=`
         <th>${day}</th>
         <td>${routine[day][0].teacher} <br> ${routine[day][0].course}</td>
@@ -2091,45 +1179,5 @@ function showYearRoutine(year){
       table.appendChild(tr);
     }
   }
-
 }
-
-
-function showMasterRoutine(){
-  const masterRoutine = document.getElementById("master-routine");
-  const yearRoutine = document.getElementById("year-routine");
-
-  masterRoutine.style.display = "block";
-  yearRoutine.style.display = "none";
-}
-
-
-// --------------------------- TIME ZONE ----------------------------------------------
-const dateStr = new Date().toString();
-const dateArr = dateStr.split(" ");
-const currentDay = dateArr[0];
-const currentMonth = dateArr[1];
-const currentDate = dateArr[2];
-const currentYear = dateArr[3];
-var currentTime = dateArr[4];
-
-if(currentTime.split(":")[0] > 12){
-  var hourInt = parseInt(currentTime.split(":")[0])-12;
-  var mint = currentTime.split(":")[1];
-  var hourStr = hourInt.toString();
-
-  
-  currentTime = `${hourStr}:${mint} PM`;
-  console.log(hourStr, mint);
-  console.log(typeof(hourStr));
-}else{
-  var hour = currentTime.split(":")[0];
-  var mint = currentTime.split(":")[1];
-  currentTime = `${hour}:${mint} AM`;
-}
-
-document.getElementById("timezone").innerHTML = `
-${currentTime} <br>
-${currentDay}, ${currentDate} ${currentMonth}, ${currentYear}
-`;
-// --------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------- 

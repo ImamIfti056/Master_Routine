@@ -158,8 +158,30 @@ function setTime(){
 }
 setTime();
 setInterval(setTime, 60000);
+var currentTime = setTime().currentTime;
+var currentDay = setTime().currentDay;
 // --------------------------------------------------------------------------------------
 
+// ------------------------------------------ CURRENT CLASSES-----------------------------------------------
+const time12to24 = (time12) => new Date(`2023-07-27 ${time12}`).toLocaleTimeString('en-US', { hour12: false });
+var activePeriodIndex = null;
+
+for(let i=0; i<periods.length; i++){
+  start_time = time12to24(periods[i].split("-")[0]);
+  end_time = time12to24(periods[i].split("-")[1]);
+  target_time = time12to24(currentTime);
+  // target_time = "10:01:00";
+
+  // Convert time strings to Date objects with a common date
+  const startDate = new Date(`2000-01-01T${start_time}`);
+  const endDate = new Date(`2000-01-01T${end_time}`);
+  const targetDate = new Date(`2000-01-01T${target_time}`);
+
+  if (targetDate >= startDate && targetDate <= endDate) {
+    activePeriodIndex=i;
+  }
+}
+// -----------------------------------------------------------------------------------------------------------
 
 // ----------------------------------SHOW TEACHERS LIST------------------------------------
 const listSection = document.getElementById("teachers-list");
@@ -167,7 +189,6 @@ const ol = document.createElement("ol");
 
 teachers_schedule.map(teacher => {
   const li = document.createElement("li");
-  // li.innerText = teacher.short_name + ' - ' + teacher.name;
   li.innerHTML=`
     <button class='btn-teachersName' onclick='showTeacherRoutine(${teacher.id})'>${teacher.short_name + ' - ' + teacher.name}</button>
   `;
@@ -179,8 +200,8 @@ listSection.appendChild(ol);
 
 // ------------------------------------------ SHOW MASTER ROUTINE ----------------------------------------------------------------------------
 const week = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
-let day = setTime().currentDay;
-let dayNo = week.indexOf(setTime().currentDay);
+let day = currentDay;
+let dayNo = week.indexOf(currentDay);
 const dayLabel = document.getElementById("dayLabel");
 dayLabel.innerText = day;
 
@@ -223,51 +244,64 @@ function trigger(day) {
         <th>2:30-5:00</th>
     </tr>
   `;
-
   teachers_schedule.map((teacher) => {
     let tr = document.createElement("tr");
     let  lab1 = teacher[`${day}`][1].course;
     let  lab2 = teacher[`${day}`][4].course;
     if(lab1[lab1.length-1]%2 == 0){
-      //console.log(lab1);
       tr.innerHTML = `
-              <th>${teacher.name}</th>
-              <td colspan="3" class="lab">${lab1}</td>
-              <td>${teacher[`${day}`][3].course}</td>
-              <td>${teacher[`${day}`][4].course}</td>
-              <td>${teacher[`${day}`][5].course}</td>
-              <td>${teacher[`${day}`][6].course}</td>
-          `;
+        <th>${teacher.name}</th>
+        <td colspan="3" class="lab">${lab1}</td>
+        <td>${teacher[`${day}`][3].course}</td>
+        <td>${teacher[`${day}`][4].course}</td>
+        <td>${teacher[`${day}`][5].course}</td>
+        <td>${teacher[`${day}`][6].course}</td>
+      `;
+      if(activePeriodIndex != null && (activePeriodIndex =="0" || activePeriodIndex =="1" || activePeriodIndex =="2")){
+        tr.cells[1].className = "active-classes";
+      }else if(activePeriodIndex != null && activePeriodIndex == "6"){
+        tr.cells[tr.cells.length-1].className = "active-classes";
+      }else if(activePeriodIndex != null){
+        tr.cells[activePeriodIndex+1].className = "active-classes";
+      }
       table.appendChild(tr);
     }
     else if(lab2[lab2.length-1]%2 == 0){
-      //console.log(lab2);
       tr.innerHTML = `
-              <th>${teacher.name}</th>
-              <td>${teacher[`${day}`][0].course}</td>
-              <td>${teacher[`${day}`][1].course}</td>
-              <td>${teacher[`${day}`][2].course}</td>
-              <td colspan="3" class="lab">${lab2}</td>
-              <td>${teacher[`${day}`][6].course}</td>
-          `;
+        <th>${teacher.name}</th>
+        <td>${teacher[`${day}`][0].course}</td>
+        <td>${teacher[`${day}`][1].course}</td>
+        <td>${teacher[`${day}`][2].course}</td>
+        <td colspan="3" class="lab">${lab2}</td>
+        <td>${teacher[`${day}`][6].course}</td>
+      `;
+      if(activePeriodIndex != null && (activePeriodIndex =="3" || activePeriodIndex =="4" || activePeriodIndex =="5")){
+        tr.cells[4].className = "active-classes";
+      }else if(activePeriodIndex != null && activePeriodIndex == "6"){
+        tr.cells[tr.cells.length-1].className = "active-classes";
+      }else if(activePeriodIndex != null){
+        tr.cells[activePeriodIndex+1].className = "active-classes";
+      }
       table.appendChild(tr);
     }
     else{
       tr.innerHTML = `
-              <th>${teacher.name}</th>
-              <td>${teacher[`${day}`][0].course}</td>
-              <td>${teacher[`${day}`][1].course}</td>
-              <td>${teacher[`${day}`][2].course}</td>
-              <td>${teacher[`${day}`][3].course}</td>
-              <td>${teacher[`${day}`][4].course}</td>
-              <td>${teacher[`${day}`][5].course}</td>
-              <td>${teacher[`${day}`][6].course}</td>
-          `;
+        <th>${teacher.name}</th>
+        <td>${teacher[`${day}`][0].course}</td>
+        <td>${teacher[`${day}`][1].course}</td>
+        <td>${teacher[`${day}`][2].course}</td>
+        <td>${teacher[`${day}`][3].course}</td>
+        <td>${teacher[`${day}`][4].course}</td>
+        <td>${teacher[`${day}`][5].course}</td>
+        <td>${teacher[`${day}`][6].course}</td>
+      `;
+      if(activePeriodIndex != null){
+        tr.cells[activePeriodIndex+1].className = "active-classes";
+      }
       table.appendChild(tr);
     }
   });
 }
-trigger(day);
 
 function showMasterRoutine(){
   const masterRoutine = document.getElementById("master-routine");
@@ -1296,3 +1330,6 @@ function showTeacherRoutine(id){
     }
   })
 }
+// --------------------------------------------------------------------------------------------------------
+
+trigger(day);

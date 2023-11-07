@@ -1,53 +1,37 @@
-teachers_schedule.map(teacher => {
-  // i, j indicates period number
-  for(let i=0; i<7; i++){
-    if(teacher.sunday[i].year == "4"){
-      for(let j=0; j<7; j++){
-        if(teacher.sunday[i].time == fourthYearRoutine.sunday[j].time){
-          fourthYearRoutine.sunday[j].course = teacher.sunday[j].course;
-          fourthYearRoutine.sunday[j].teacher = teacher.short_name;
-          //console.log("4sun dukse",fourthYearRoutine.sunday[j])
-        }
-      }
-    }
-    if(teacher.monday[i].year == "4"){
-      //console.log("mon",teacher.monday[i]);
-      for(let j=0; j<7; j++){
-        if(teacher.monday[i].time == fourthYearRoutine.monday[j].time){
-          fourthYearRoutine.monday[j].course = teacher.monday[j].course;
-          fourthYearRoutine.monday[j].teacher = teacher.short_name;
-          //console.log("4mon dukse",fourthYearRoutine.monday[j])
-        }
-      }
-  
-    }
-    if(teacher.tuesday[i].year == "4"){
-      for(let j=0; j<7; j++){
-        if(teacher.tuesday[i].time == fourthYearRoutine.tuesday[j].time){
-          fourthYearRoutine.tuesday[j].course = teacher.tuesday[j].course;
-          fourthYearRoutine.tuesday[j].teacher = teacher.short_name;
-          //console.log("4tues dukse",fourthYearRoutine.tuesday[j])
-        }
-      }
-    }
-    if(teacher.wednesday[i].year == "4"){
-      //console.log("wednes",teacher.wednesday[i]);
-      for(let j=0; j<7; j++){
-        if(teacher.wednesday[i].time == fourthYearRoutine.wednesday[j].time){
-          fourthYearRoutine.wednesday[j].course = teacher.wednesday[j].course;
-          fourthYearRoutine.wednesday[j].teacher = teacher.short_name;
-          //console.log("4wednes dukse",fourthYearRoutine.wednesday[j])
-        }
-      }
-    }
-    if(teacher.thursday[i].year == "4"){
-      for(let j=0; j<7; j++){
-        if(teacher.thursday[i].time == fourthYearRoutine.thursday[j].time){
-          fourthYearRoutine.thursday[j].course = teacher.thursday[j].course;
-          fourthYearRoutine.thursday[j].teacher = teacher.short_name;
-          //console.log("4thurs dukse",fourthYearRoutine.thursday[j])
-        }
-      }
-    }
+const periods = [
+  "8:00 AM - 8:50 AM",
+  "8:50 AM - 9:40 AM",
+  "9:40 AM - 10:30 AM",
+  "10:40 AM - 11:30 AM",
+  "11:30 AM - 12:20 PM",
+  "12:20 PM - 1:10 PM",
+  "2:30 PM - 5:00 PM"
+];
+
+// Get the current time
+const currentTime = new Date();
+const currentHours = currentTime.getHours();
+const currentMinutes = currentTime.getMinutes();
+
+// Convert current time to a string in the same format as periods
+const currentTimeStr = `${currentHours}:${currentMinutes >= 10 ? currentMinutes : '0' + currentMinutes} ${currentHours >= 12 ? 'PM' : 'AM'}`;
+
+// Find the time slot for the current time
+let timeSlot = null;
+
+for (let i = 0; i < periods.length; i++) {
+  const [startTimeStr, endTimeStr] = periods[i].split(' - ');
+  const startTime = new Date(`2000-01-01 ${startTimeStr}`);
+  const endTime = new Date(`2000-01-01 ${endTimeStr}`);
+
+  if (currentTime >= startTime && currentTime <= endTime) {
+    timeSlot = i + 1; // Time slot is 1-based
+    break;
   }
-})
+}
+
+if (timeSlot !== null) {
+  console.log(`The current time is in time slot ${timeSlot}: ${periods[timeSlot - 1]}`);
+} else {
+  console.log("The current time is not within any time slot.");
+}

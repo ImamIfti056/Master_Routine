@@ -25,8 +25,12 @@ table{
     /* border: 1px solid gray; */
 }
 
-tr:nth-child(odd){
+tr:nth-child(even){
     background-color: #ededed;
+}
+
+tr:nth-child(odd){
+    background-color: #dfdfdf;
 }
 
 tr:first-child{
@@ -137,6 +141,11 @@ nav ul li button:hover{
     background: white;
 }
 .btn-arrow:hover{
+    background-color: var(--primary);
+    color: white;
+}
+
+.active-classes{
     background-color: var(--primary);
     color: white;
 }

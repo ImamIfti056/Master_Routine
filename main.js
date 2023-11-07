@@ -112,33 +112,52 @@ teachers_schedule.push(teacher_schedule);
 // ------------------------------------------------------------------------------------------------------
 
 // --------------------------- TIME ZONE ----------------------------------------------
-const dateStr = new Date().toString();
-const dateArr = dateStr.split(" ");
-const currentDay = dateArr[0];
-const currentMonth = dateArr[1];
-const currentDate = dateArr[2];
-const currentYear = dateArr[3];
-var currentTime = dateArr[4];
+function setTime(){
+  const dateStr = new Date().toString();
+  const dateArr = dateStr.split(" ");
+  var currentDay = dateArr[0];
+  const currentMonth = dateArr[1];
+  const currentDate = dateArr[2];
+  const currentYear = dateArr[3];
+  var currentTime = dateArr[4];
 
-if(currentTime.split(":")[0] > 12){
-  var hourInt = parseInt(currentTime.split(":")[0])-12;
-  var mint = currentTime.split(":")[1];
-  var hourStr = hourInt.toString();
 
-  
-  currentTime = `${hourStr}:${mint} PM`;
-  console.log(hourStr, mint);
-  console.log(typeof(hourStr));
-}else{
-  var hour = currentTime.split(":")[0];
-  var mint = currentTime.split(":")[1];
-  currentTime = `${hour}:${mint} AM`;
+  if(currentDay == "Sat" || currentDay =="Sun" || currentDay == "Fri"){
+    currentDay = "sunday";
+  }else if(currentDay == "Mon"){
+    currentDay = "monday";
+  }else if(currentDay == "Tue"){
+    currentDay = "tuesday";
+  }else if(currentDay == "Wed"){
+    currentDay = "wednesday";
+  }else if(currentDay == "Thu"){
+    currentDay = "thursday";
+  }
+
+  if(currentTime.split(":")[0] >= 12){
+    var hourInt = parseInt(currentTime.split(":")[0])-12;
+    var mint = currentTime.split(":")[1];
+    var hourStr = hourInt.toString();
+
+    
+    currentTime = `${hourStr}:${mint} PM`;
+  }else{
+    var hour = currentTime.split(":")[0];
+    var mint = currentTime.split(":")[1];
+    currentTime = `${hour}:${mint} AM`;
+  }
+
+  document.getElementById("timezone").innerHTML = `
+  ${currentTime} <br>
+  ${currentDay.toUpperCase()}, ${currentDate} ${currentMonth}, ${currentYear}
+  `;
+
+  return{
+    currentDay, currentTime
+  }
 }
-
-document.getElementById("timezone").innerHTML = `
-${currentTime} <br>
-${currentDay}, ${currentDate} ${currentMonth}, ${currentYear}
-`;
+setTime();
+setInterval(setTime, 60000);
 // --------------------------------------------------------------------------------------
 
 
@@ -148,17 +167,20 @@ const ol = document.createElement("ol");
 
 teachers_schedule.map(teacher => {
   const li = document.createElement("li");
-  li.innerText = teacher.short_name + ' - ' + teacher.name;
+  // li.innerText = teacher.short_name + ' - ' + teacher.name;
+  li.innerHTML=`
+    <button class='btn-teachersName' onclick='showTeacherRoutine(${teacher.id})'>${teacher.short_name + ' - ' + teacher.name}</button>
+  `;
   ol.appendChild(li);
 })
 
 listSection.appendChild(ol);
 // ----------------------------------------------------------------------------------------
 
-// -------------------- SHOW MASTER ROUTINE----------------------------------------------------
+// ------------------------------------------ SHOW MASTER ROUTINE ----------------------------------------------------------------------------
 const week = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
-let dayNo = 0;
-let day = week[dayNo];
+let day = setTime().currentDay;
+let dayNo = week.indexOf(setTime().currentDay);
 const dayLabel = document.getElementById("dayLabel");
 dayLabel.innerText = day;
 
@@ -180,71 +202,81 @@ function gt() {
 }
 
 function trigger(day) {
-    const table = document.getElementById("master-table");
-    table.innerHTML = `
-      <tr>
-          <th>Teachers Name</th>
-          <th>8:00-8:50</th>
-          <th>8:50-9:40</th>
-          <th>9:40-10:30</th>
-          <th>10:40-11:30</th>
-          <th>11:30-12:20</th>
-          <th>12:20-1:10</th>
-          <th>2:30-5:00</th>
-      </tr>
-      `;
-    teachers_schedule.map((teacher) => {
-      let tr = document.createElement("tr");
-      //console.log(teacher[`${day}`][4].course);
-      let  lab1 = teacher[`${day}`][1].course;
-      let  lab2 = teacher[`${day}`][4].course;
-      if(lab1[lab1.length-1]%2 == 0){
-        //console.log(lab1);
-        tr.innerHTML = `
-                <th>${teacher.name}</th>
-                <td colspan="3" class="lab">${lab1}</td>
-                                <td>${teacher[`${day}`][3].course}</td>
-                <td>${teacher[`${day}`][4].course}</td>
-                <td>${teacher[`${day}`][5].course}</td>
-                <td>${teacher[`${day}`][6].course}</td>
-            `;
-        table.appendChild(tr);
-      }
-      else if(lab2[lab2.length-1]%2 == 0){
-        //console.log(lab2);
-        tr.innerHTML = `
-                <th>${teacher.name}</th>
-                <td>${teacher[`${day}`][0].course}</td>
-                <td>${teacher[`${day}`][1].course}</td>
-                <td>${teacher[`${day}`][2].course}</td>
-                <td colspan="3" class="lab">${lab2}</td>
-                <td>${teacher[`${day}`][6].course}</td>
-            `;
-        table.appendChild(tr);
-      }
-      else{
-        tr.innerHTML = `
-                <th>${teacher.name}</th>
-                <td>${teacher[`${day}`][0].course}</td>
-                <td>${teacher[`${day}`][1].course}</td>
-                <td>${teacher[`${day}`][2].course}</td>
-                <td>${teacher[`${day}`][3].course}</td>
-                <td>${teacher[`${day}`][4].course}</td>
-                <td>${teacher[`${day}`][5].course}</td>
-                <td>${teacher[`${day}`][6].course}</td>
-            `;
-        table.appendChild(tr);
-      }
-    });
-  }
+  const masterRoutine = document.getElementById("master-routine");
+  const yearRoutine = document.getElementById("year-routine");
+  const teacherRoutine = document.getElementById("teacher-routine");
+
+  yearRoutine.style.display = "none";
+  teacherRoutine.style.display = "none";
+  masterRoutine.style.display = "block";
+
+  const table = document.getElementById("master-table");
+  table.innerHTML = `
+    <tr>
+        <th>Teachers Name</th>
+        <th>8:00-8:50</th>
+        <th>8:50-9:40</th>
+        <th>9:40-10:30</th>
+        <th>10:40-11:30</th>
+        <th>11:30-12:20</th>
+        <th>12:20-1:10</th>
+        <th>2:30-5:00</th>
+    </tr>
+  `;
+
+  teachers_schedule.map((teacher) => {
+    let tr = document.createElement("tr");
+    let  lab1 = teacher[`${day}`][1].course;
+    let  lab2 = teacher[`${day}`][4].course;
+    if(lab1[lab1.length-1]%2 == 0){
+      //console.log(lab1);
+      tr.innerHTML = `
+              <th>${teacher.name}</th>
+              <td colspan="3" class="lab">${lab1}</td>
+              <td>${teacher[`${day}`][3].course}</td>
+              <td>${teacher[`${day}`][4].course}</td>
+              <td>${teacher[`${day}`][5].course}</td>
+              <td>${teacher[`${day}`][6].course}</td>
+          `;
+      table.appendChild(tr);
+    }
+    else if(lab2[lab2.length-1]%2 == 0){
+      //console.log(lab2);
+      tr.innerHTML = `
+              <th>${teacher.name}</th>
+              <td>${teacher[`${day}`][0].course}</td>
+              <td>${teacher[`${day}`][1].course}</td>
+              <td>${teacher[`${day}`][2].course}</td>
+              <td colspan="3" class="lab">${lab2}</td>
+              <td>${teacher[`${day}`][6].course}</td>
+          `;
+      table.appendChild(tr);
+    }
+    else{
+      tr.innerHTML = `
+              <th>${teacher.name}</th>
+              <td>${teacher[`${day}`][0].course}</td>
+              <td>${teacher[`${day}`][1].course}</td>
+              <td>${teacher[`${day}`][2].course}</td>
+              <td>${teacher[`${day}`][3].course}</td>
+              <td>${teacher[`${day}`][4].course}</td>
+              <td>${teacher[`${day}`][5].course}</td>
+              <td>${teacher[`${day}`][6].course}</td>
+          `;
+      table.appendChild(tr);
+    }
+  });
+}
 trigger(day);
 
 function showMasterRoutine(){
   const masterRoutine = document.getElementById("master-routine");
   const yearRoutine = document.getElementById("year-routine");
+  const teacherRoutine = document.getElementById("teacher-routine");
 
   masterRoutine.style.display = "block";
   yearRoutine.style.display = "none";
+  teacherRoutine.style.display = "none";
 }
 // ----------------------------------------------------------------------------------------------------------------
 
@@ -1107,8 +1139,10 @@ function getYearRoutine(y){
 function showYearRoutine(year){
   const masterRoutine = document.getElementById("master-routine");
   const yearRoutine = document.getElementById("year-routine");
+  const teacherRoutine = document.getElementById("teacher-routine");
 
   masterRoutine.style.display = "none";
+  teacherRoutine.style.display = "none";
   yearRoutine.style.display = "block";
 
   const table = document.getElementById("year-table");
@@ -1138,9 +1172,7 @@ function showYearRoutine(year){
   }
 
   for(day in routine){
-    //console.log(day,":",routine[day]);
     const tr = document.createElement("tr");
-    //console.log(routine[day][1].course);
     let  lab1 = routine[day][1].course;
     let  lab2 = routine[day][4].course;
     if(lab1[lab1.length-1]%2 == 0){
@@ -1181,3 +1213,86 @@ function showYearRoutine(year){
   }
 }
 //------------------------------------------------------------------------------------------------------------------- 
+
+// -------------------------------------------- SHOW TEACHERS ROUTINE--------------------------------------------
+function showTeacherRoutine(id){
+  const masterRoutine = document.getElementById("master-routine");
+  const yearRoutine = document.getElementById("year-routine");
+  const teacherRoutine = document.getElementById("teacher-routine");
+
+  masterRoutine.style.display = "none";
+  yearRoutine.style.display = "none";
+  teacherRoutine.style.display = "block";
+
+  teachers_schedule.map(teacher => {
+    if(teacher.id == id){
+      const table = document.getElementById("teacher-table");
+      table.innerHTML = `
+        <caption class="table-title">${teacher.name}</caption>
+        <tr>
+            <th>Day | Time</th>
+            <th>8:00-8:50</th>
+            <th>8:50-9:40</th>
+            <th>9:40-10:30</th>
+            <th>10:40-11:30</th>
+            <th>11:30-12:20</th>
+            <th>12:20-1:10</th>
+            <th>2:30-5:00</th>
+        </tr>
+      `;
+      
+      for(d in teacher){
+        if(d == "id" || d== "name" || d=="short_name"){
+          continue;
+        }
+        let lab1 = teacher[d][1].course;
+        let lab2 = teacher[d][4].course;
+
+        if(lab1[lab1.length-1]%2 == 0){
+          let tr = document.createElement("tr");
+          tr.innerHTML=`
+          <th>${d}</th>
+          <td class="lab" colspan="3">${teacher[d][0].course}</td>
+          <td>${teacher[d][3].course}</td>
+          <td>${teacher[d][4].course}</td>
+          <td>${teacher[d][5].course}</td>
+          <td>${teacher[d][6].course}</td>
+          `;
+
+          table.appendChild(tr)
+        }
+        else if(lab2[lab2.length-1]%2 == 0){
+          let tr = document.createElement("tr");
+          tr.innerHTML=`
+          <th>${d}</th>
+          <td>${teacher[d][0].course}</td>
+          <td>${teacher[d][1].course}</td>
+          <td>${teacher[d][2].course}</td>
+          <td class="lab" colspan="3">${teacher[d][3].course}</td>
+          <td>${teacher[d][6].course}</td>
+          `;
+
+          table.appendChild(tr)
+        }
+        else{
+          let tr = document.createElement("tr");
+          tr.innerHTML=`
+          <th>${d}</th>
+          <td>${teacher[d][0].course}</td>
+          <td>${teacher[d][1].course}</td>
+          <td>${teacher[d][2].course}</td>
+          <td>${teacher[d][3].course}</td>
+          <td>${teacher[d][4].course}</td>
+          <td>${teacher[d][5].course}</td>
+          <td>${teacher[d][6].course}</td>
+          `;
+
+          table.appendChild(tr)
+        }
+      }
+
+      
+
+    }
+  })
+}

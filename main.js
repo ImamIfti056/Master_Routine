@@ -235,13 +235,13 @@ function trigger(day) {
   table.innerHTML = `
     <tr>
         <th>Teachers Name</th>
-        <th>8:00-8:50</th>
-        <th>8:50-9:40</th>
-        <th>9:40-10:30</th>
-        <th>10:40-11:30</th>
-        <th>11:30-12:20</th>
-        <th>12:20-1:10</th>
-        <th>2:30-5:00</th>
+        <th>8:00-<br>8:50</th>
+        <th>8:50-<br>9:40</th>
+        <th>9:40-<br>10:30</th>
+        <th>10:40-<br>11:30</th>
+        <th>11:30-<br>12:20</th>
+        <th>12:20-<br>1:10</th>
+        <th>2:30-<br>5:00</th>
     </tr>
   `;
   teachers_schedule.map((teacher) => {
@@ -1184,13 +1184,13 @@ function showYearRoutine(year){
     <caption class="table-title">Year: ${year}</caption>
     <tr>
         <th>Day | Time</th>
-        <th>8:00-8:50</th>
-        <th>8:50-9:40</th>
-        <th>9:40-10:30</th>
-        <th>10:40-11:30</th>
-        <th>11:30-12:20</th>
-        <th>12:20-1:10</th>
-        <th>2:30-5:00</th>
+        <th>8:00-<br>8:50</th>
+        <th>8:50-<br>9:40</th>
+        <th>9:40-<br>10:30</th>
+        <th>10:40-<br>11:30</th>
+        <th>11:30-<br>12:20</th>
+        <th>12:20-<br>1:10</th>
+        <th>2:30-<br>5:00</th>
     </tr>
   `;
   
@@ -1265,13 +1265,13 @@ function showTeacherRoutine(id){
         <caption class="table-title">${teacher.name}</caption>
         <tr>
             <th>Day | Time</th>
-            <th>8:00-8:50</th>
-            <th>8:50-9:40</th>
-            <th>9:40-10:30</th>
-            <th>10:40-11:30</th>
-            <th>11:30-12:20</th>
-            <th>12:20-1:10</th>
-            <th>2:30-5:00</th>
+            <th>8:00-<br>8:50</th>
+            <th>8:50-<br>9:40</th>
+            <th>9:40-<br>10:30</th>
+            <th>10:40-<br>11:30</th>
+            <th>11:30-<br>12:20</th>
+            <th>12:20-<br>1:10</th>
+            <th>2:30-<br>5:00</th>
         </tr>
       `;
       
@@ -1333,3 +1333,15 @@ function showTeacherRoutine(id){
 // --------------------------------------------------------------------------------------------------------
 
 trigger(day);
+
+function download(id) {
+  const invoice = document.getElementById(id);
+
+  html2pdf(invoice, {
+    margin: 0.5,
+    filename: 'routine.pdf',
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: { scale: 3},
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+  })
+}

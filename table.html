@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include html2canvas and html2pdf -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
     <header>
         <nav>
+            <h1>Department of Electronics and Communication Engineering, KUET</h1>
             <ul class="flex">
                 <li><button onclick="showMasterRoutine()">Master Routine</button></li>
                 <li><button onclick="showYearRoutine(1)">First Year Routine</button></li>
@@ -39,12 +43,14 @@
             <table id="year-table">
                 
             </table>
+            <button class="btn btn-download" onclick="download('year-table')">Download Routine</button>
         </section>
 
         <section id="teacher-routine">
             <table id="teacher-table">
                 
             </table>
+            <button class="btn btn-download" onclick="download('teacher-table')">Download Routine</button>
         </section>
         
         <section id="courses">

@@ -110,6 +110,17 @@ teachers.map(teacher => {
 teachers_schedule.push(teacher_schedule);
 })
 // ------------------------------------------------------------------------------------------------------
+function download(id) {
+  const invoice = document.getElementById(id);
+
+  html2pdf(invoice, {
+    margin: 0.5,
+    filename: 'routine.pdf',
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: { scale: 3},
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+  })
+}
 
 // --------------------------- TIME ZONE ----------------------------------------------
 function setTime(){
@@ -121,8 +132,11 @@ function setTime(){
   const currentYear = dateArr[3];
   var currentTime = dateArr[4];
 
-
-  if(currentDay == "Sat" || currentDay =="Sun" || currentDay == "Fri"){
+  if(currentDay == "Sat"){
+    currentDay = "saturday";
+  }else if(currentDay == "Fri"){
+    currentDay = "friday";
+  }else if(currentDay =="Sun"){
     currentDay = "sunday";
   }else if(currentDay == "Mon"){
     currentDay = "monday";
@@ -134,17 +148,20 @@ function setTime(){
     currentDay = "thursday";
   }
 
-  if(currentTime.split(":")[0] >= 12){
+  if(currentTime.split(":")[0] > 12){
     var hourInt = parseInt(currentTime.split(":")[0])-12;
     var mint = currentTime.split(":")[1];
-    var hourStr = hourInt.toString();
-
-    
+    var hourStr = hourInt.toString();    
     currentTime = `${hourStr}:${mint} PM`;
+  }else if(currentTime.split(":")[0] < 12){
+    var hour = currentTime.split(":")[0];
+    if(hour ==0) hour = '12';
+    var mint = currentTime.split(":")[1];
+    currentTime = `${hour}:${mint} AM`;
   }else{
     var hour = currentTime.split(":")[0];
     var mint = currentTime.split(":")[1];
-    currentTime = `${hour}:${mint} AM`;
+    currentTime = `${hour}:${mint} PM`;
   }
 
   document.getElementById("timezone").innerHTML = `
@@ -169,8 +186,8 @@ var activePeriodIndex = null;
 for(let i=0; i<periods.length; i++){
   start_time = time12to24(periods[i].split("-")[0]);
   end_time = time12to24(periods[i].split("-")[1]);
-  target_time = time12to24(currentTime);
-  // target_time = "10:01:00";
+  // target_time = time12to24(currentTime);
+  target_time = "9:01:00";
 
   // Convert time strings to Date objects with a common date
   const startDate = new Date(`2000-01-01T${start_time}`);
@@ -199,8 +216,9 @@ listSection.appendChild(ol);
 // ----------------------------------------------------------------------------------------
 
 // ------------------------------------------ SHOW MASTER ROUTINE ----------------------------------------------------------------------------
-const week = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
+const week = [ "sunday", "monday", "tuesday", "wednesday", "thursday"];
 let day = currentDay;
+if(day=="saturday" || day =="friday") day = "sunday";
 let dayNo = week.indexOf(currentDay);
 const dayLabel = document.getElementById("dayLabel");
 dayLabel.innerText = day;
@@ -258,11 +276,20 @@ function trigger(day) {
         <td>${teacher[`${day}`][6].course}</td>
       `;
       if(activePeriodIndex != null && (activePeriodIndex =="0" || activePeriodIndex =="1" || activePeriodIndex =="2")){
-        tr.cells[1].className = "active-classes";
+        if(tr.cells[1].innerText){
+          tr.cells[1].className = "active-classes";
+          tr.cells[0].className = "active-classes";
+        }
       }else if(activePeriodIndex != null && activePeriodIndex == "6"){
-        tr.cells[tr.cells.length-1].className = "active-classes";
+        if(tr.cells[tr.cells.length-1].innerText){
+          tr.cells[tr.cells.length-1].className = "active-classes";
+          tr.cells[0].className = "active-classes";
+        }
       }else if(activePeriodIndex != null){
-        tr.cells[activePeriodIndex+1].className = "active-classes";
+        if(tr.cells[activePeriodIndex+1].innerText){
+          tr.cells[activePeriodIndex+1].className = "active-classes";
+          tr.cells[0].className = "active-classes";
+        }
       }
       table.appendChild(tr);
     }
@@ -276,11 +303,20 @@ function trigger(day) {
         <td>${teacher[`${day}`][6].course}</td>
       `;
       if(activePeriodIndex != null && (activePeriodIndex =="3" || activePeriodIndex =="4" || activePeriodIndex =="5")){
-        tr.cells[4].className = "active-classes";
+        if(tr.cells[4].innerText){
+          tr.cells[4].className = "active-classes";
+          tr.cells[0].className = "active-classes";
+        }
       }else if(activePeriodIndex != null && activePeriodIndex == "6"){
-        tr.cells[tr.cells.length-1].className = "active-classes";
+        if(tr.cells[tr.cells.length-1].innerText){
+          tr.cells[tr.cells.length-1].className = "active-classes";
+          tr.cells[0].className = "active-classes";
+        }
       }else if(activePeriodIndex != null){
-        tr.cells[activePeriodIndex+1].className = "active-classes";
+        if(tr.cells[activePeriodIndex+1].innerText){
+          tr.cells[activePeriodIndex+1].className = "active-classes";
+          tr.cells[0].className = "active-classes";
+        }
       }
       table.appendChild(tr);
     }
@@ -296,7 +332,10 @@ function trigger(day) {
         <td>${teacher[`${day}`][6].course}</td>
       `;
       if(activePeriodIndex != null){
-        tr.cells[activePeriodIndex+1].className = "active-classes";
+        if(tr.cells[activePeriodIndex+1].innerText){
+          tr.cells[activePeriodIndex+1].className = "active-classes";
+          tr.cells[0].className = "active-classes";
+        }
       }
       table.appendChild(tr);
     }
@@ -315,760 +354,62 @@ function showMasterRoutine(){
 // ----------------------------------------------------------------------------------------------------------------
 
 // ---------------------------------------YEAR ROUTINE-------------------------------------------------------------
+//template of year routine
+function createYearRoutine(){
+  return{
+    "sunday":[
+      {"time": "8:00 AM - 8:50 AM","teacher": "","course": ""},
+      {"time": "8:50 AM - 9:40 AM","teacher": "","course": ""},
+      {"time": "9:40 AM - 10:30 AM","teacher": "","course": ""},
+      {"time": "10:40 AM - 11:30 AM","teacher": "","course": ""},
+      {"time": "11:30 AM - 12:20 PM","teacher": "","course": ""},
+      {"time": "12:20 PM - 1:10 PM","teacher": "","course": ""},
+      {"time": "2:30 PM - 5:00 PM","teacher": "","course": ""}
+    ],
+    "monday":[
+      {"time": "8:00 AM - 8:50 AM","teacher": "","course": ""},
+      {"time": "8:50 AM - 9:40 AM","teacher": "","course": ""},
+      {"time": "9:40 AM - 10:30 AM","teacher": "","course": ""},
+      {"time": "10:40 AM - 11:30 AM","teacher": "","course": ""},
+      {"time": "11:30 AM - 12:20 PM","teacher": "","course": ""},
+      {"time": "12:20 PM - 1:10 PM","teacher": "","course": ""},
+      {"time": "2:30 PM - 5:00 PM","teacher": "","course": ""}
+    ],
+    "tuesday":[
+      {"time": "8:00 AM - 8:50 AM","teacher": "","course": ""},
+      {"time": "8:50 AM - 9:40 AM","teacher": "","course": ""},
+      {"time": "9:40 AM - 10:30 AM","teacher": "","course": ""},
+      {"time": "10:40 AM - 11:30 AM","teacher": "","course": ""},
+      {"time": "11:30 AM - 12:20 PM","teacher": "","course": ""},
+      {"time": "12:20 PM - 1:10 PM","teacher": "","course": ""},
+      {"time": "2:30 PM - 5:00 PM","teacher": "","course": ""}
+    ],
+    "wednesday":[
+      {"time": "8:00 AM - 8:50 AM","teacher": "","course": ""},
+      {"time": "8:50 AM - 9:40 AM","teacher": "","course": ""},
+      {"time": "9:40 AM - 10:30 AM","teacher": "","course": ""},
+      {"time": "10:40 AM - 11:30 AM","teacher": "","course": ""},
+      {"time": "11:30 AM - 12:20 PM","teacher": "","course": ""},
+      {"time": "12:20 PM - 1:10 PM","teacher": "","course": ""},
+      {"time": "2:30 PM - 5:00 PM","teacher": "","course": ""}
+    ],
+    "thursday":[
+      {"time": "8:00 AM - 8:50 AM","teacher": "","course": ""},
+      {"time": "8:50 AM - 9:40 AM","teacher": "","course": ""},
+      {"time": "9:40 AM - 10:30 AM","teacher": "","course": ""},
+      {"time": "10:40 AM - 11:30 AM","teacher": "","course": ""},
+      {"time": "11:30 AM - 12:20 PM","teacher": "","course": ""},
+      {"time": "12:20 PM - 1:10 PM","teacher": "","course": ""},
+      {"time": "2:30 PM - 5:00 PM","teacher": "","course": ""}
+    ]
+  }
+}
+
 function getYearRoutine(y){
-
-  var firstYearRoutine = {
-    "sunday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "monday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "tuesday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "wednesday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "thursday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ]
-  }
-
-  var secondYearRoutine = {
-    "sunday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "monday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "tuesday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "wednesday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "thursday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ]
-  }
-
-  var thirdYearRoutine = {
-    "sunday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "monday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "tuesday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "wednesday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "thursday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ]
-  }
-
-  var fourthYearRoutine = {
-    "sunday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "monday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "tuesday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "wednesday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ],
-    "thursday":[
-      {
-        "time": "8:00 AM - 8:50 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "8:50 AM - 9:40 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "9:40 AM - 10:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "10:40 AM - 11:30 AM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "11:30 AM - 12:20 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "12:20 PM - 1:10 PM",
-        "teacher": "",
-        "course": ""
-      },
-      {
-        "time": "2:30 PM - 5:00 PM",
-        "teacher": "",
-        "course": ""
-      }
-    ]
-  }
-
+  var firstYearRoutine = createYearRoutine();
+  var secondYearRoutine = createYearRoutine();
+  var thirdYearRoutine = createYearRoutine();
+  var fourthYearRoutine = createYearRoutine();
 
 // ------------------first Year routine-------------------------
   teachers_schedule.map(teacher => {
@@ -1333,15 +674,3 @@ function showTeacherRoutine(id){
 // --------------------------------------------------------------------------------------------------------
 
 trigger(day);
-
-function download(id) {
-  const invoice = document.getElementById(id);
-
-  html2pdf(invoice, {
-    margin: 0.5,
-    filename: 'routine.pdf',
-    image: { type: 'jpeg', quality: 1 },
-    html2canvas: { scale: 3},
-    jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
-  })
-}

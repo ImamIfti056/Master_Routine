@@ -1,0 +1,118 @@
+#editRoutineForm{
+    flex: 5;
+    padding: 30px 40px;
+    width: 300px
+}
+
+main > div{
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main > p{
+    color: var(--primary);
+    font-weight: 600;
+}
+#updateRoutine-btn{
+    color: white;
+    background-color: var(--primary);
+    padding: 12px 24px;
+}
+#updateRoutine-btn:hover{
+    opacity: 0.8;
+}
+#editRoutineForm > div select{
+    display: inline-block;
+    margin: 15px 30px;
+    margin-right: 50%;
+    padding: 12px 30px;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: bold;
+    border: none;
+    border: 1px solid black
+}
+#editRoutineForm > div select option{
+    font-size: 16px;
+}
+
+.sun, .mon, .tues, .wed, .thurs{
+    display: inline-block;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 20px;
+    width: 700px;
+}
+
+.f, .s, .t, .fo, .fi, .s, .l{
+    margin-bottom: 10px;
+}
+h3{
+    color: var(--primary)
+}
+h4{
+    display: inline-block;
+    width: 170px;
+    font-size: 15px;
+}
+
+input{
+    width: 120px;
+}
+
+input[placeholder="Year"]{
+    width: 60px;
+}
+input[placeholder="Dept"]{
+    width: 60px;
+}
+#editRoutineForm label{
+    color: var(--primary);
+    font-weight: 600;
+}
+select{
+    padding: 6px;
+}
+option{
+    text-transform: lowercase;
+}
+.btn-delete{
+    background-color: orangered;
+    border: 2px solid orangered;
+    color: white;
+    padding: 10px 12px;
+    display: block;
+    margin: 40px 10px;
+}
+.btn-delete:hover{
+    background-color: white;
+    color: orangered;
+}
+#editMsg{
+    text-align: center;
+}
+#confirmDelete{
+    display: none;
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+}
+#confirmDelete h3{
+    margin-bottom: 20px;
+}
+#confirmDelete button{
+    padding: 8px 20px;
+    text-align: center;
+}
+#confirmDelete .btn-y{
+    color: white;
+    background-color: orangered;
+}
+#confirmDelete .btn-n{
+    color: white;
+    background-color: var(--primary);
+    border: 1px solid var(--primary)
+}

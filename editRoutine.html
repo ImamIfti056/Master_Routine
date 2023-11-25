@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="editRoutine.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Department of Electronics and Communication Engineering, KUET</h1>
+        </nav>
+    </header>
+
+    <!-- confirmation message -->
+    <h3 id="editMsg"></h3>
+    <div id="confirmDelete">
+        <h3>Are you sure?</h3>
+        <button class="btn btn-y" onclick="deleteTeacher()">Yes</button>
+        <button class="btn btn-n" onclick="negative()">No</button>
+    </div>
+    <div class="flex">
+        <main id="editRoutineForm">
+            <div>
+                <select id="selectTeacher"></select>
+                <button class="btn" id="updateRoutine-btn">Update Routine</button>
+                <button class="btn btn-delete" onclick="confirmDeleteTeacher()">Remove Teacher</button>            
+            </div>
+            <p>*For removing any schedules fill the fields by typing 'null'. Leaving the fields blank won't update the schedules*</p>
+            <section class="sun">
+                <h3>Sunday</h3>
+                <div class="f">
+                    <h4>8:00 AM - 8:50 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="s-f-y"/> -->
+                    <select id="s-f-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="s-f-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="s-f-d"/> -->
+                    <select id="s-f-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="s">
+                    <h4>8:50 AM - 9:40 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="s-s-y"/> -->
+                    <select id="s-s-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="s-s-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="s-s-d"/> -->
+                    <select id="s-s-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="t">
+                    <h4>9:40 AM - 10:30 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="s-t-y"/> -->
+                    <select id="s-t-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="s-t-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="s-t-d"/> -->
+                    <select id="s-t-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="fo">
+                    <h4>10:40 AM - 11:30 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="s-fo-y"/> -->
+                    <select id="s-fo-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="s-fo-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="s-fo-d"/> -->
+                    <select id="s-fo-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="fi">
+                    <h4>11:30 AM - 12:20 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="s-fi-y"/> -->
+                    <select id="s-fi-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="s-fi-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="s-fi-d"/> -->
+                    <select id="s-fi-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="si">
+                    <h4>12:20 PM - 01:10 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="s-si-y"/> -->
+                    <select id="s-si-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="s-si-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="s-si-d"/> -->
+                    <select id="s-si-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="l">
+                    <h4>02:00 PM - 05:00 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="s-l-y"/> -->
+                    <select id="s-l-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="s-l-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="s-l-d"/> -->
+                    <select id="s-l-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="mon">
+                <h3>Monday</h3>
+                <div class="f">
+                    <h4>8:00 AM - 8:50 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="m-f-y"/> -->
+                    <select id="m-f-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="m-f-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="m-f-d"/> -->
+                    <select id="m-f-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="s">
+                    <h4>8:50 AM - 9:40 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="m-s-y"/> -->
+                    <select id="m-s-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="m-s-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="m-s-d"/> -->
+                    <select id="m-s-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="t">
+                    <h4>9:40 AM - 10:30 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="m-t-y"/> -->
+                    <select id="m-t-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="m-t-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="m-t-d"/> -->
+                    <select id="m-t-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="fo">
+                    <h4>10:40 AM - 11:30 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="m-fo-y"/> -->
+                    <select id="m-fo-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="m-fo-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="m-fo-d"/> -->
+                    <select id="m-fo-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="fi">
+                    <h4>11:30 AM - 12:20 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="m-fi-y"/> -->
+                    <select id="m-fi-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="m-fi-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="m-fi-d"/> -->
+                    <select id="m-fi-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="si">
+                    <h4>12:20 PM - 01:10 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="m-si-y"/> -->
+                    <select id="m-si-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="m-si-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="m-si-d"/> -->
+                    <select id="m-si-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="l">
+                    <h4>02:00 PM - 05:00 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="m-l-y"/> -->
+                    <select id="m-l-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="m-l-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="m-l-d"/> -->
+                    <select id="m-l-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="tues">
+                <h3>Tuesday</h3>
+                <div class="f">
+                    <h4>8:00 AM - 8:50 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="t-f-y"/> -->
+                    <select id="t-f-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="t-f-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="t-f-d"/> -->
+                    <select id="t-f-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="s">
+                    <h4>8:50 AM - 9:40 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="t-s-y"/> -->
+                    <select id="t-s-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="t-s-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="t-s-d"/> -->
+                    <select id="t-s-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="t">
+                    <h4>9:40 AM - 10:30 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="t-t-y"/> -->
+                    <select id="t-t-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="t-t-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="t-t-d"/> -->
+                    <select id="t-t-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="fo">
+                    <h4>10:40 AM - 11:30 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="t-fo-y"/> -->
+                    <select id="t-fo-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="t-fo-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="t-fo-d"/> -->
+                    <select id="t-fo-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="fi">
+                    <h4>11:30 AM - 12:20 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="t-fi-y"/> -->
+                    <select id="t-fi-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="t-fi-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="t-fi-d"/> -->
+                    <select id="t-fi-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="si">
+                    <h4>12:20 PM - 01:10 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="t-si-y"/> -->
+                    <select id="t-si-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="t-si-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="t-si-d"/> -->
+                    <select id="t-si-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="l">
+                    <h4>02:00 PM - 05:00 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="t-l-y"/> -->
+                    <select id="t-l-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="t-l-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="t-l-d"/> -->
+                    <select id="t-l-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="wed">
+                <h3>Wednesday</h3>
+                <div class="f">
+                    <h4>8:00 AM - 8:50 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="w-f-y"/> -->
+                    <select id="w-f-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="w-f-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="w-f-d"/> -->
+                    <select id="w-f-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="s">
+                    <h4>8:50 AM - 9:40 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="w-s-y"/> -->
+                    <select id="w-s-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="w-s-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="w-s-d"/> -->
+                    <select id="w-s-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="t">
+                    <h4>9:40 AM - 10:30 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="w-t-y"/> -->
+                    <select id="w-t-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="w-t-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="w-t-d"/> -->
+                    <select id="w-t-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="fo">
+                    <h4>10:40 AM - 11:30 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="w-fo-y"/> -->
+                    <select id="w-fo-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="w-fo-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="w-fo-d"/> -->
+                    <select id="w-fo-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="fi">
+                    <h4>11:30 AM - 12:20 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="w-fi-y"/> -->
+                    <select id="w-fi-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="w-fi-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="w-fi-d"/> -->
+                    <select id="w-fi-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="si">
+                    <h4>12:20 PM - 01:10 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="w-si-y"/> -->
+                    <select id="w-si-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="w-si-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="w-si-d"/> -->
+                    <select id="w-si-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="l">
+                    <h4>02:00 PM - 05:00 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="w-l-y"/> -->
+                    <select id="w-l-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="w-l-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="w-l-d"/> -->
+                    <select id="w-l-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="thurs">
+                <h3>Thursday</h3>
+                <div class="f">
+                    <h4>8:00 AM - 8:50 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="th-f-y"/> -->
+                    <select id="th-f-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="th-f-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="th-f-d"/> -->
+                    <select id="th-f-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="s">
+                    <h4>8:50 AM - 9:40 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="th-s-y"/> -->
+                    <select id="th-s-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="th-s-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="th-s-d"/> -->
+                    <select id="th-s-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="t">
+                    <h4>9:40 AM - 10:30 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="th-t-y"/> -->
+                    <select id="th-t-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="th-t-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="th-t-d"/> -->
+                    <select id="th-t-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="fo">
+                    <h4>10:40 AM - 11:30 AM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="th-fo-y"/> -->
+                    <select id="th-fo-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="th-fo-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="th-fo-d"/> -->
+                    <select id="th-fo-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="fi">
+                    <h4>11:30 AM - 12:20 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="th-fi-y"/> -->
+                    <select id="th-fi-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="th-fi-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="th-fi-d"/> -->
+                    <select id="th-fi-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="si">
+                    <h4>12:20 PM - 01:10 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="th-si-y"/> -->
+                    <select id="th-si-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="th-si-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="th-si-d"/> -->
+                    <select id="th-si-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+                <div class="l">
+                    <h4>02:00 PM - 05:00 PM</h4>
+                    <label>Year:</label>
+                    <!-- <input type="text" placeholder="Year" id="th-l-y"/> -->
+                    <select id="th-l-y">
+                        <option value="null" selected>null</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <label>Course:</label>
+                    <input type="text" placeholder="Course" id="th-l-c"/>
+                    <label>Dept:</label>
+                    <!-- <input type="text" placeholder="Dept" id="th-l-d"/> -->
+                    <select id="th-l-d">
+                        <option value="null" selected>null</option>
+                        <option value="ece">ECE</option>
+                        <option value="ese">ese</option>
+                        <option value="bme">bme</option>
+                        <option value="eee">eee</option>
+                        <option value="mse">mse</option><option value="cse">cse</option>
+                    </select>
+                </div>
+            </section>            
+
+        </main>
+    
+        <section id="courses">
+            <h1>Courses</h1>
+            <ul>
+                <li>ECE 4000 - Project & Thesis</li>
+                <li>ECE 4203 - Telecommunication Engineering</li>
+                <li>ECE 4204 - Telecommunication Engineering Lab</li>
+                <li>ECE 4205 - Satellite Communication & RADAR</li>
+                <li>ECE 4206 - Satellite Communication & RADAR Lab</li>
+                <li>ECE 4219 - Machine Learning</li>
+                <li>ECE 4227 - Biomedical Engineering</li>
+                <li>ECE 4228 - Biomedical Engineering Lab</li>
+                <li>HUM 4209 - Industrial Management & Accounting</li>
+                <li>ECE 3200 - Electronics Project Design/Development</li>
+                <li>ECE 3201 - Information Theory</li>
+                <li>ECE 3203 - Digital Signal Processing</li>
+                <li>ECE 3204 - Digital Signal Processing Lab</li>
+                <li>ECE 3205 - Digital Communication</li>
+                <li>ECE 3206 - Digital Communication Lab</li>
+                <li>ECE 3207 - Antenna Engineering</li>
+                <li>ECE 3208 - Antenna Engineering Lab</li>
+                <li>CSE 3209 - Database System</li>
+                <li>CSE 3210 - Database System Lab</li>
+                <li>ECE 2200 - Electronics Circuit Design Lab</li>
+                <li>ECE 2201 - Analog Communication</li>
+                <li>ECE 2202 - Analog Communication Lab</li>
+                <li>ECE 2205 - Electromagnetic Fields and Waves</li>
+                <li>CSE 2209 - Data Structure & Algorithm</li>
+                <li>CSE 2210 - Data Structure & Algorithm Lab</li>
+                <li>Math 2209 - Mathematics IV</li>
+                <li>EEE 2209 - Electrical Drives & Instrumentation</li>
+                <li>EEE 2210 - Electrical Drives & Instrumentation Lab</li>
+                <li>ECE 1209 - Analog Electronics I</li>
+                <li>ECE 1210 - Analog Electronics I Lab</li>
+                <li>ECE 1205 - Science of Materials</li>
+                <li>CSE 1209 - Computer Fundamentals & Programming</li>
+                <li>CSE 1210 - Computer Fundamentals & Programming Lab</li>
+                <li>Ch 1209 - Chemistry</li>
+                <li>Ch 1210 - Chemistry Lab</li>
+                <li>Math 1209 - Mathematics II</li>
+                <li>HUM 1210 - Technical English Lab</li>
+                <li>CSE 4241 - Biomedical Engineering</li>
+                <li>ECE 3215 - Body Sensor Network</li>
+                <li>ECE 3216 - Body Sensor Network Lab</li>
+                <li>EEE 3231 - Network & Communication Systems</li>
+                <li>ESE 2213 - Power Electronics</li>
+                <li>ESE 2214 - Power Electronics Lab</li>                
+            </ul>
+        </section>
+    </div>
+
+    <a href="table.html" class="btn btn-manage">Go Back</a>
+
+    <div id="timezone" class="center">
+
+    </div>
+
+    <script src="main.js"></script>
+    <script src="addRoutine.js"></script>
+    <script src="editRoutine.js"></script>
+</body>
+</html>

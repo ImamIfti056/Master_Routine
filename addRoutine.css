@@ -1,0 +1,78 @@
+#addRoutineForm{
+    flex: 5;
+    padding: 30px 40px;
+}
+
+#addRoutineForm section:first-child{
+    padding: 20px;
+}
+#addRoutineForm section:first-child label{
+    font-size: 18px;
+    color: var(--primary);
+    font-weight: bold;
+}
+#addRoutineForm section:first-child input{
+    width: 200px;
+    margin-right: 60px;
+}
+#addRoutineForm section:first-child button{
+    color: white;
+    background-color: var(--primary);
+    padding: 8px 12px;
+}
+#addRoutineForm section:first-child a{
+    text-decoration: none;
+    padding: 8px;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    margin-left: 20px;
+}
+
+.sunday, .monday, .tuesday, .wednesday, .thursday{
+    display: inline-block;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 20px;
+    width: 700px;
+
+}
+
+.first, .second, .third, .fourth, .fifth, .sixth, .lab{
+    margin-bottom: 10px;
+}
+h3{
+    color: var(--primary)
+}
+h4{
+    display: inline-block;
+    width: 170px;
+    font-size: 15px;
+}
+
+input{
+    width: 120px;
+}
+
+input[placeholder="Year"]{
+    width: 60px;
+}
+input[placeholder="Dept"]{
+    width: 60px;
+}
+#addRoutineForm label{
+    color: var(--primary);
+    font-weight: 600;
+}
+#msg{
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+    color: red;
+}
+
+select{
+    padding: 6px;
+}
+option{
+    text-transform: lowercase;
+}

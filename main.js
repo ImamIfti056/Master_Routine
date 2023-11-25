@@ -1,113 +1,120 @@
 const teachers_url = "http://127.0.0.1:8000/teachers/";
-const weeks_url = "http://127.0.0.1:8000/weeks/";
-const details_url = "http://127.0.0.1:8000/details/";
 
 fetch(teachers_url)
   .then((response) => response.json())
   .then((data) => {
-    //console.log("teachers: ",data);
     localStorage.setItem("datas", JSON.stringify(data));
   })
   .catch((error) => {
     console.log(error);
   });
-
-fetch(weeks_url)
-  .then((response) => response.json())
-  .then((data) => {
-    //console.log("weeks: ",data)
-    localStorage.setItem("weeks", JSON.stringify(data));
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
-fetch(details_url)
-  .then((response) => response.json())
-  .then((data) => {
-    //console.log("details: ",data)
-    localStorage.setItem("details", JSON.stringify(data));
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
 const teachers_list = localStorage.getItem("datas");
-const weeks_list = localStorage.getItem("weeks");
-const details_list = localStorage.getItem("details");
-
 const teachers = JSON.parse(teachers_list);
-const weeks = JSON.parse(weeks_list);
-const details = JSON.parse(details_list);
+
 
 // ---------------------- MAIN DATASET -----------------------------------
 const periods = ["8:00 AM - 8:50 AM", "8:50 AM - 9:40 AM", "9:40 AM - 10:30 AM", "10:40 AM - 11:30 AM", "11:30 AM - 12:20 PM", "12:20 PM - 1:10 PM",  "2:30 PM - 5:00 PM"];
 var teachers_schedule =[];
-
 teachers.map(teacher => {
     var teacher_schedule = {
         "id": "",
         "name": "", 
         "short_name": "",
-        "sunday": [],
-        "monday": [],
-        "tuesday": [],
-        "wednesday": [],
-        "thursday": [],
+        "dept": "",
+        "sunday": [
+          {"time": "8:00 AM - 8:50 AM","dept": "","year": "","course": ""},
+          {"time": "8:50 AM - 9:40 AM","dept": "","year": "","course": ""},
+          {"time": "9:40 AM - 10:30 AM","dept": "","year": "","course": ""},
+          {"time": "10:40 AM - 11:30 AM","dept": "","year": "","course": ""},
+          {"time": "11:30 AM - 12:20 PM","dept": "","year": "","course": ""},
+          {"time": "12:20 PM - 01:10 PM","dept": "","year": "","course": ""},
+          {"time": "02:30 PM - 05:00 PM","dept": "","year": "","course": ""},
+        ],
+        "monday": [
+          {"time": "8:00 AM - 8:50 AM","dept": "","year": "","course": ""},
+          {"time": "8:50 AM - 9:40 AM","dept": "","year": "","course": ""},
+          {"time": "9:40 AM - 10:30 AM","dept": "","year": "","course": ""},
+          {"time": "10:40 AM - 11:30 AM","dept": "","year": "","course": ""},
+          {"time": "11:30 AM - 12:20 PM","dept": "","year": "","course": ""},
+          {"time": "12:20 PM - 01:10 PM","dept": "","year": "","course": ""},
+          {"time": "02:30 PM - 05:00 PM","dept": "","year": "","course": ""},
+        ],
+        "tuesday": [
+          {"time": "8:00 AM - 8:50 AM","dept": "","year": "","course": ""},
+          {"time": "8:50 AM - 9:40 AM","dept": "","year": "","course": ""},
+          {"time": "9:40 AM - 10:30 AM","dept": "","year": "","course": ""},
+          {"time": "10:40 AM - 11:30 AM","dept": "","year": "","course": ""},
+          {"time": "11:30 AM - 12:20 PM","dept": "","year": "","course": ""},
+          {"time": "12:20 PM - 01:10 PM","dept": "","year": "","course": ""},
+          {"time": "02:30 PM - 05:00 PM","dept": "","year": "","course": ""},
+        ],
+        "wednesday": [
+          {"time": "8:00 AM - 8:50 AM","dept": "","year": "","course": ""},
+          {"time": "8:50 AM - 9:40 AM","dept": "","year": "","course": ""},
+          {"time": "9:40 AM - 10:30 AM","dept": "","year": "","course": ""},
+          {"time": "10:40 AM - 11:30 AM","dept": "","year": "","course": ""},
+          {"time": "11:30 AM - 12:20 PM","dept": "","year": "","course": ""},
+          {"time": "12:20 PM - 01:10 PM","dept": "","year": "","course": ""},
+          {"time": "02:30 PM - 05:00 PM","dept": "","year": "","course": ""},
+        ],
+        "thursday": [
+          {"time": "8:00 AM - 8:50 AM","dept": "","year": "","course": ""},
+          {"time": "8:50 AM - 9:40 AM","dept": "","year": "","course": ""},
+          {"time": "9:40 AM - 10:30 AM","dept": "","year": "","course": ""},
+          {"time": "10:40 AM - 11:30 AM","dept": "","year": "","course": ""},
+          {"time": "11:30 AM - 12:20 PM","dept": "","year": "","course": ""},
+          {"time": "12:20 PM - 01:10 PM","dept": "","year": "","course": ""},
+          {"time": "02:30 PM - 05:00 PM","dept": "","year": "","course": ""},
+        ],
     };
-
+    var period_mapping = {
+        "first":0,
+        "second":1,
+        "third":2,
+        "fourth":3,
+        "fifth":4,
+        "sixth":5,
+        "lab":6,
+    }
     teacher_schedule.id = teacher.id;
     teacher_schedule.name = teacher.name;
-    teacher_schedule.short_name = teacher.short_name;
-    var schedule = {
-      "time": "",
-      "year": "",
-      "course": ""
-    }
+    teacher_schedule.short_name = teacher.short_name.toUpperCase();
+    teacher_schedule.dept = teacher.dept.toUpperCase();
 
-    for(d in teacher){
-      if(d == "id" || d== "name" || d=="short_name"){
+    for(let d in teacher){
+      if(d == "id" || d== "name" || d=="short_name" || d=="dept"){
         continue;
       }
-      teacher[d].map(day_id => {      
-        weeks.map(week => {
-          if(week.id == day_id){
-            var period = [week.first[0], week.second[0], week.third[0], week.fourth[0], week.fifth[0], week.sixth[0], week.lab[0]];
+      [newDay,newPeriod,newItem]=(d.split('_'));
+      extrordinaryIndex=period_mapping[newPeriod];
 
-            for(let k=0; k<periods.length; k++){
-              for(let i=0; i<details.length; i++){
-                schedule.time = periods[k];
-                if(details[i].id == period[k]){
-                  if(typeof(details[i].course) == "object"){
-                    schedule.year = "";
-                    schedule.course = "";
-                    teacher_schedule[d].push(schedule);
-                    schedule = {
-                      "time": "",
-                      "year": "",
-                      "course": ""
-                    }
-                    break;  
-                  }
-                  schedule.year = details[i].year;
-                  schedule.course = details[i].course;
-                  teacher_schedule[d].push(schedule);
-                  schedule = {
-                    "time": "",
-                    "year": "",
-                    "course": ""
-                  }
-                  break;
-                }
-              }
-            }
-          } 
-        })
-        
-      })
+      if(newItem === "course"){
+        if(teacher[d].toLowerCase() == "null" || teacher[d] == null){
+          // teacher_schedule[newDay][extrordinaryIndex].course="";
+          teacher_schedule[newDay][extrordinaryIndex].course=teacher[d];
+        }else{
+          teacher_schedule[newDay][extrordinaryIndex].course=teacher[d];
+        }
+      }
+      if(newItem === "year"){
+        if(teacher[d].toLowerCase() == "null" || teacher[d] == null){
+          // teacher_schedule[newDay][extrordinaryIndex].year="";
+          teacher_schedule[newDay][extrordinaryIndex].year=teacher[d];
+        }else{
+          teacher_schedule[newDay][extrordinaryIndex].year=teacher[d];
+        }
+      }
+      if(newItem === "dept"){
+        if(teacher[d].toLowerCase() == "null" || teacher[d] == null){
+          // teacher_schedule[newDay][extrordinaryIndex].dept="";
+          teacher_schedule[newDay][extrordinaryIndex].dept=teacher[d];
+        }else{
+          teacher_schedule[newDay][extrordinaryIndex].dept=teacher[d];          
+        }
+      }
     }
-
 teachers_schedule.push(teacher_schedule);
+// console.log(teachers_schedule)
 })
 // ------------------------------------------------------------------------------------------------------
 function download(id) {
@@ -115,7 +122,7 @@ function download(id) {
 
   html2pdf(invoice, {
     margin: 0.5,
-    filename: 'routine.pdf',
+    filename: 'Routine.pdf',
     image: { type: 'jpeg', quality: 1 },
     html2canvas: { scale: 3},
     jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
@@ -184,10 +191,10 @@ const time12to24 = (time12) => new Date(`2023-07-27 ${time12}`).toLocaleTimeStri
 var activePeriodIndex = null;
 
 for(let i=0; i<periods.length; i++){
-  start_time = time12to24(periods[i].split("-")[0]);
-  end_time = time12to24(periods[i].split("-")[1]);
-  // target_time = time12to24(currentTime);
-  target_time = "9:01:00";
+  let start_time = time12to24(periods[i].split("-")[0]);
+  let end_time = time12to24(periods[i].split("-")[1]);
+  let target_time = time12to24(currentTime);
+  // let target_time = "11:01:00";
 
   // Convert time strings to Date objects with a common date
   const startDate = new Date(`2000-01-01T${start_time}`);
@@ -198,7 +205,7 @@ for(let i=0; i<periods.length; i++){
     activePeriodIndex=i;
   }
 }
-// -----------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------ 
 
 // ----------------------------------SHOW TEACHERS LIST------------------------------------
 const listSection = document.getElementById("teachers-list");
@@ -207,7 +214,7 @@ const ol = document.createElement("ol");
 teachers_schedule.map(teacher => {
   const li = document.createElement("li");
   li.innerHTML=`
-    <button class='btn-teachersName' onclick='showTeacherRoutine(${teacher.id})'>${teacher.short_name + ' - ' + teacher.name}</button>
+    <button class='btn-teachersName' onclick='showTeacherRoutine(${teacher.id})'>${teacher.short_name.toUpperCase() + ' - ' + teacher.name.toUpperCase()}</button>
   `;
   ol.appendChild(li);
 })
@@ -239,14 +246,16 @@ function gt() {
     trigger(day);
   }
 }
-
 function trigger(day) {
   const masterRoutine = document.getElementById("master-routine");
   const yearRoutine = document.getElementById("year-routine");
   const teacherRoutine = document.getElementById("teacher-routine");
-
+  const manageRoutine = document.getElementById("manage-routine");
+  const teachersList = document.getElementById("teachers-list");
   yearRoutine.style.display = "none";
   teacherRoutine.style.display = "none";
+  manageRoutine.style.display = "none";
+  teachersList.style.display='block';
   masterRoutine.style.display = "block";
 
   const table = document.getElementById("master-table");
@@ -269,26 +278,41 @@ function trigger(day) {
     if(lab1[lab1.length-1]%2 == 0){
       tr.innerHTML = `
         <th>${teacher.name}</th>
-        <td colspan="3" class="lab">${lab1}</td>
-        <td>${teacher[`${day}`][3].course}</td>
-        <td>${teacher[`${day}`][4].course}</td>
-        <td>${teacher[`${day}`][5].course}</td>
-        <td>${teacher[`${day}`][6].course}</td>
+        <td colspan="3" class="lab">${lab1.toUpperCase()}</td>
+        <td>${teacher[`${day}`][3].course.toLowerCase() == "null" ? "" : teacher[`${day}`][3].course.toUpperCase()}</td>
+        <td>${teacher[`${day}`][4].course.toLowerCase() == "null" ? "" : teacher[`${day}`][4].course.toUpperCase()}</td>
+        <td>${teacher[`${day}`][5].course.toLowerCase() == "null" ? "" : teacher[`${day}`][5].course.toUpperCase()}</td>
+        <td>${teacher[`${day}`][6].course.toLowerCase() == "null" ? "" : teacher[`${day}`][6].course.toUpperCase()}</td>
       `;
       if(activePeriodIndex != null && (activePeriodIndex =="0" || activePeriodIndex =="1" || activePeriodIndex =="2")){
         if(tr.cells[1].innerText){
-          tr.cells[1].className = "active-classes";
-          tr.cells[0].className = "active-classes";
+          if(teacher[day][activePeriodIndex].dept.toLowerCase() != "ece"){
+            tr.cells[activePeriodIndex+1].className = "active-classes-non-dept";
+            tr.cells[0].className = "active-classes-non-dept";
+          }else{
+            tr.cells[1].className = "active-classes";
+            tr.cells[0].className = "active-classes";
+          }
         }
       }else if(activePeriodIndex != null && activePeriodIndex == "6"){
         if(tr.cells[tr.cells.length-1].innerText){
-          tr.cells[tr.cells.length-1].className = "active-classes";
-          tr.cells[0].className = "active-classes";
+          if(teacher[day][activePeriodIndex].dept.toLowerCase() != "ece"){
+            tr.cells[activePeriodIndex+1].className = "active-classes-non-dept";
+            tr.cells[0].className = "active-classes-non-dept";
+          }else{
+            tr.cells[tr.cells.length-1].className = "active-classes";
+            tr.cells[0].className = "active-classes";
+          }
         }
       }else if(activePeriodIndex != null){
-        if(tr.cells[activePeriodIndex+1].innerText){
-          tr.cells[activePeriodIndex+1].className = "active-classes";
-          tr.cells[0].className = "active-classes";
+        if(tr.cells[activePeriodIndex-1].innerText){
+          if(teacher[day][activePeriodIndex].dept.toLowerCase() != "ece"){
+            tr.cells[activePeriodIndex-1].className = "active-classes-non-dept";
+            tr.cells[0].className = "active-classes-non-dept";
+          }else{
+            tr.cells[activePeriodIndex-1].className = "active-classes";
+            tr.cells[0].className = "active-classes";
+          }
         }
       }
       table.appendChild(tr);
@@ -296,45 +320,65 @@ function trigger(day) {
     else if(lab2[lab2.length-1]%2 == 0){
       tr.innerHTML = `
         <th>${teacher.name}</th>
-        <td>${teacher[`${day}`][0].course}</td>
-        <td>${teacher[`${day}`][1].course}</td>
-        <td>${teacher[`${day}`][2].course}</td>
-        <td colspan="3" class="lab">${lab2}</td>
-        <td>${teacher[`${day}`][6].course}</td>
+        <td>${teacher[`${day}`][0].course.toLowerCase() == "null" ? "" : teacher[`${day}`][0].course.toUpperCase()}</td>
+        <td>${teacher[`${day}`][1].course.toLowerCase() == "null" ? "" : teacher[`${day}`][1].course.toUpperCase()}</td>
+        <td>${teacher[`${day}`][2].course.toLowerCase() == "null" ? "" : teacher[`${day}`][2].course.toUpperCase()}</td>
+        <td colspan="3" class="lab">${lab2.toLowerCase == "null" ? "" : lab2.toUpperCase()}</td>
+        <td>${teacher[`${day}`][6].course.toLowerCase() == "null" ? "" : teacher[`${day}`][6].course.toUpperCase()}</td>
       `;
       if(activePeriodIndex != null && (activePeriodIndex =="3" || activePeriodIndex =="4" || activePeriodIndex =="5")){
         if(tr.cells[4].innerText){
-          tr.cells[4].className = "active-classes";
-          tr.cells[0].className = "active-classes";
+          if(teacher[day][activePeriodIndex].dept.toLowerCase() != "ece"){
+            tr.cells[4].className = "active-classes-non-dept";
+            tr.cells[0].className = "active-classes-non-dept";
+          }else{
+            tr.cells[4].className = "active-classes";
+            tr.cells[0].className = "active-classes";
+          }
         }
       }else if(activePeriodIndex != null && activePeriodIndex == "6"){
         if(tr.cells[tr.cells.length-1].innerText){
-          tr.cells[tr.cells.length-1].className = "active-classes";
-          tr.cells[0].className = "active-classes";
+          if(teacher[day][activePeriodIndex].dept.toLowerCase() != "ece"){
+            tr.cells[tr.cells.length-1].className = "active-classes-non-dept";
+            tr.cells[0].className = "active-classes-non-dept";
+          }else{
+            tr.cells[tr.cells.length-1].className = "active-classes";
+            tr.cells[0].className = "active-classes";
+          }
         }
       }else if(activePeriodIndex != null){
         if(tr.cells[activePeriodIndex+1].innerText){
-          tr.cells[activePeriodIndex+1].className = "active-classes";
-          tr.cells[0].className = "active-classes";
+          if(teacher[day][activePeriodIndex].dept.toLowerCase() != "ece"){
+            tr.cells[activePeriodIndex+1].className = "active-classes-non-dept";
+            tr.cells[0].className = "active-classes-non-dept";
+          }else{
+            tr.cells[activePeriodIndex+1].className = "active-classes";
+            tr.cells[0].className = "active-classes";
+          }
         }
       }
       table.appendChild(tr);
     }
     else{
       tr.innerHTML = `
-        <th>${teacher.name}</th>
-        <td>${teacher[`${day}`][0].course}</td>
-        <td>${teacher[`${day}`][1].course}</td>
-        <td>${teacher[`${day}`][2].course}</td>
-        <td>${teacher[`${day}`][3].course}</td>
-        <td>${teacher[`${day}`][4].course}</td>
-        <td>${teacher[`${day}`][5].course}</td>
-        <td>${teacher[`${day}`][6].course}</td>
+      <th>${teacher.name}</th>
+      <td>${teacher[`${day}`][0].course.toLowerCase()=="null" ? "" : teacher[`${day}`][0].course.toUpperCase()}</td>
+      <td>${teacher[`${day}`][1].course.toLowerCase()=="null" ? "" : teacher[`${day}`][1].course.toUpperCase()}</td>
+      <td>${teacher[`${day}`][2].course.toLowerCase()=="null" ? "" : teacher[`${day}`][2].course.toUpperCase()}</td>
+      <td>${teacher[`${day}`][3].course.toLowerCase()=="null" ? "" : teacher[`${day}`][3].course.toUpperCase()}</td>
+      <td>${teacher[`${day}`][4].course.toLowerCase()=="null" ? "" : teacher[`${day}`][4].course.toUpperCase()}</td>
+      <td>${teacher[`${day}`][5].course.toLowerCase()=="null" ? "" : teacher[`${day}`][5].course.toUpperCase()}</td>
+      <td>${teacher[`${day}`][6].course.toLowerCase()=="null" ? "" : teacher[`${day}`][6].course.toUpperCase()}</td>
       `;
       if(activePeriodIndex != null){
         if(tr.cells[activePeriodIndex+1].innerText){
-          tr.cells[activePeriodIndex+1].className = "active-classes";
-          tr.cells[0].className = "active-classes";
+          if(teacher[day][activePeriodIndex].dept.toLowerCase() != "ece"){
+            tr.cells[activePeriodIndex+1].className = "active-classes-non-dept";
+            tr.cells[0].className = "active-classes-non-dept";
+          }else{
+            tr.cells[activePeriodIndex+1].className = "active-classes";
+            tr.cells[0].className = "active-classes";
+          }
         }
       }
       table.appendChild(tr);
@@ -346,16 +390,18 @@ function showMasterRoutine(){
   const masterRoutine = document.getElementById("master-routine");
   const yearRoutine = document.getElementById("year-routine");
   const teacherRoutine = document.getElementById("teacher-routine");
-
+  const manageRoutine = document.getElementById("manage-routine");
+  const teachersList = document.getElementById("teachers-list");
+  teachersList.style.display='block';
   masterRoutine.style.display = "block";
   yearRoutine.style.display = "none";
+  manageRoutine.style.display = "none";
   teacherRoutine.style.display = "none";
 }
 // ----------------------------------------------------------------------------------------------------------------
 
 // ---------------------------------------YEAR ROUTINE-------------------------------------------------------------
-//template of year routine
-function createYearRoutine(){
+function createYearRoutine(){  //template of year routine
   return{
     "sunday":[
       {"time": "8:00 AM - 8:50 AM","teacher": "","course": ""},
@@ -415,76 +461,88 @@ function getYearRoutine(y){
   teachers_schedule.map(teacher => {
     for(let i=0; i<7; i++){
       for(d in teacher){
-        if(d == "id" || d== "name" || d=="short_name"){
+        if(d == "id" || d== "name" || d=="short_name"|| d=="dept"){
           continue;
         }
         if(teacher[d][i].year == "1"){
           for(let j=0; j<7; j++){
-            if(teacher[d][i].time == firstYearRoutine[d][j].time){
+            if(teacher[d][i].time == firstYearRoutine[d][j].time && teacher[d][j].dept.toLowerCase() == "ece"){
               firstYearRoutine[d][j].course = teacher[d][j].course;
-              firstYearRoutine[d][j].teacher = teacher.short_name;
+              if(firstYearRoutine[d][j].teacher){
+                firstYearRoutine[d][j].teacher = firstYearRoutine[d][j].teacher + '/' + teacher.short_name;
+              }else{
+                firstYearRoutine[d][j].teacher = teacher.short_name;
+              }
             }
           }
         }
       }
     }
   })
-
-
 // -------------second year routine---------------
   teachers_schedule.map(teacher => {
     for(let i=0; i<7; i++){
       for(d in teacher){
-        if(d == "id" || d== "name" || d=="short_name"){
+        if(d == "id" || d== "name" || d=="short_name" || d=="dept"){
           continue;
         }
         if(teacher[d][i].year == "2"){
           for(let j=0; j<7; j++){
-            if(teacher[d][i].time == secondYearRoutine[d][j].time){
+            if(teacher[d][i].time == secondYearRoutine[d][j].time && teacher[d][j].dept.toLowerCase() == "ece"){
               secondYearRoutine[d][j].course = teacher[d][j].course;
-              secondYearRoutine[d][j].teacher = teacher.short_name;
+              if(secondYearRoutine[d][j].teacher){
+                secondYearRoutine[d][j].teacher = secondYearRoutine[d][j].teacher + '/' + teacher.short_name;
+              }else{
+                secondYearRoutine[d][j].teacher = teacher.short_name;
+              }
             }
           }
         }
       }
     }
   })
-
-
   // --------------third year routine--------------
   teachers_schedule.map(teacher => {
     // i, j indicates period number
     for(let i=0; i<7; i++){
       for(d in teacher){
-        if(d == "id" || d== "name" || d=="short_name"){
+        if(d == "id" || d== "name" || d=="short_name" || d=="dept"){
           continue;
         }
         if(teacher[d][i].year == "3"){
           for(let j=0; j<7; j++){
-            if(teacher[d][i].time == thirdYearRoutine[d][j].time){
+            if(teacher[d][i].time == thirdYearRoutine[d][j].time && teacher[d][j].dept.toLowerCase() == "ece"){
               thirdYearRoutine[d][j].course = teacher[d][j].course;
-              thirdYearRoutine[d][j].teacher = teacher.short_name;
+              if(thirdYearRoutine[d][j].teacher){
+                thirdYearRoutine[d][j].teacher = thirdYearRoutine[d][j].teacher + '/' + teacher.short_name;
+              }else{                
+                thirdYearRoutine[d][j].teacher = teacher.short_name;
+              }
             }
           }
         }
       }
     }
   })
-
-
   // ---------------------fourth year routine----------------
   teachers_schedule.map(teacher => {
     // i, j indicates period number
     for(let i=0; i<7; i++){
       for(d in teacher){
-        if(d == "id" || d== "name" || d=="short_name"){
+        if(d == "id" || d== "name" || d=="short_name" || d=="dept"){
           continue;
         }
         if(teacher[d][i].year == "4"){
           for(let j=0; j<7; j++){
-            if(teacher[d][i].time == fourthYearRoutine[d][j].time){
+            // console.log(teacher[d][i].time, fourthYearRoutine[d][j].time)
+            if(teacher[d][i].time == fourthYearRoutine[d][j].time  && teacher[d][j].dept.toLowerCase() == "ece"){
+              // console.log(teacher[d][j].course)
               fourthYearRoutine[d][j].course = teacher[d][j].course;
-              fourthYearRoutine[d][j].teacher = teacher.short_name;
+              if(fourthYearRoutine[d][j].teacher){
+                fourthYearRoutine[d][j].teacher= fourthYearRoutine[d][j].teacher + '/' + teacher.short_name;
+              }else{
+                fourthYearRoutine[d][j].teacher = teacher.short_name;
+              }
             }
           }
         }
@@ -515,9 +573,12 @@ function showYearRoutine(year){
   const masterRoutine = document.getElementById("master-routine");
   const yearRoutine = document.getElementById("year-routine");
   const teacherRoutine = document.getElementById("teacher-routine");
-
+  const manageRoutine = document.getElementById("manage-routine");
+  const teachersList = document.getElementById("teachers-list");
+  teachersList.style.display='block';
   masterRoutine.style.display = "none";
   teacherRoutine.style.display = "none";
+  manageRoutine.style.display = "none";
   yearRoutine.style.display = "block";
 
   const table = document.getElementById("year-table");
@@ -545,7 +606,7 @@ function showYearRoutine(year){
   }else if(year == "4"){
     routine = getYearRoutine(year).fourthYearRoutine;
   }
-
+  console.log(routine)
   for(day in routine){
     const tr = document.createElement("tr");
     let  lab1 = routine[day][1].course;
@@ -553,35 +614,35 @@ function showYearRoutine(year){
     if(lab1[lab1.length-1]%2 == 0){
       tr.innerHTML=`
         <th>${day}</th>
-        <td class="lab" colspan="3">${routine[day][0].teacher} <br> ${lab1}</td>
-        <td>${routine[day][3].teacher} <br> ${routine[day][3].course}</td>
-        <td>${routine[day][4].teacher} <br> ${routine[day][4].course}</td>
-        <td>${routine[day][5].teacher} <br> ${routine[day][5].course}</td>
-        <td>${routine[day][6].teacher} <br> ${routine[day][6].course}</td>
+        <td class="lab" colspan="3">${routine[day][0].teacher} <br> ${lab1.toUpperCase()}</td>
+        <td>${routine[day][3].teacher} <br> ${routine[day][3].course.toUpperCase()}</td>
+        <td>${routine[day][4].teacher} <br> ${routine[day][4].course.toUpperCase()}</td>
+        <td>${routine[day][5].teacher} <br> ${routine[day][5].course.toUpperCase()}</td>
+        <td>${routine[day][6].teacher} <br> ${routine[day][6].course.toUpperCase()}</td>
       `;
       table.appendChild(tr);
     }
     else if(lab2[lab2.length-1]%2 == 0){
       tr.innerHTML=`
         <th>${day}</th>
-        <td>${routine[day][0].teacher} <br> ${routine[day][0].course}</td>
-        <td>${routine[day][1].teacher} <br> ${routine[day][1].course}</td>
-        <td>${routine[day][2].teacher} <br> ${routine[day][2].course}</td>
-        <td class="lab" colspan="3">${routine[day][3].teacher} <br> ${lab2}</td>
-        <td>${routine[day][6].teacher} <br> ${routine[day][6].course}</td>
+        <td>${routine[day][0].teacher} <br> ${routine[day][0].course.toUpperCase()}</td>
+        <td>${routine[day][1].teacher} <br> ${routine[day][1].course.toUpperCase()}</td>
+        <td>${routine[day][2].teacher} <br> ${routine[day][2].course.toUpperCase()}</td>
+        <td class="lab" colspan="3">${routine[day][3].teacher} <br> ${lab2.toUpperCase()}</td>
+        <td>${routine[day][6].teacher} <br> ${routine[day][6].course.toUpperCase()}</td>
       `;
       table.appendChild(tr);
     }
     else{
       tr.innerHTML=`
         <th>${day}</th>
-        <td>${routine[day][0].teacher} <br> ${routine[day][0].course}</td>
-        <td>${routine[day][1].teacher} <br> ${routine[day][1].course}</td>
-        <td>${routine[day][2].teacher} <br> ${routine[day][2].course}</td>
-        <td>${routine[day][3].teacher} <br> ${routine[day][3].course}</td>
-        <td>${routine[day][4].teacher} <br> ${routine[day][4].course}</td>
-        <td>${routine[day][5].teacher} <br> ${routine[day][5].course}</td>
-        <td>${routine[day][6].teacher} <br> ${routine[day][6].course}</td>
+        <td>${routine[day][0].teacher} <br> ${routine[day][0].course.toUpperCase()}</td>
+        <td>${routine[day][1].teacher} <br> ${routine[day][1].course.toUpperCase()}</td>
+        <td>${routine[day][2].teacher} <br> ${routine[day][2].course.toUpperCase()}</td>
+        <td>${routine[day][3].teacher} <br> ${routine[day][3].course.toUpperCase()}</td>
+        <td>${routine[day][4].teacher} <br> ${routine[day][4].course.toUpperCase()}</td>
+        <td>${routine[day][5].teacher} <br> ${routine[day][5].course.toUpperCase()}</td>
+        <td>${routine[day][6].teacher} <br> ${routine[day][6].course.toUpperCase()}</td>
       `;
       table.appendChild(tr);
     }
@@ -594,7 +655,8 @@ function showTeacherRoutine(id){
   const masterRoutine = document.getElementById("master-routine");
   const yearRoutine = document.getElementById("year-routine");
   const teacherRoutine = document.getElementById("teacher-routine");
-
+  const teachersList = document.getElementById("teachers-list");
+  teachersList.style.display='block';
   masterRoutine.style.display = "none";
   yearRoutine.style.display = "none";
   teacherRoutine.style.display = "block";
@@ -603,7 +665,7 @@ function showTeacherRoutine(id){
     if(teacher.id == id){
       const table = document.getElementById("teacher-table");
       table.innerHTML = `
-        <caption class="table-title">${teacher.name}</caption>
+        <caption class="table-title">${teacher.name.toUpperCase()}</caption>
         <tr>
             <th>Day | Time</th>
             <th>8:00-<br>8:50</th>
@@ -617,57 +679,50 @@ function showTeacherRoutine(id){
       `;
       
       for(d in teacher){
-        if(d == "id" || d== "name" || d=="short_name"){
+        if(d == "id" || d== "name" || d=="short_name" || d=="dept"){
           continue;
         }
         let lab1 = teacher[d][1].course;
         let lab2 = teacher[d][4].course;
-
         if(lab1[lab1.length-1]%2 == 0){
           let tr = document.createElement("tr");
           tr.innerHTML=`
           <th>${d}</th>
-          <td class="lab" colspan="3">${teacher[d][0].course}</td>
-          <td>${teacher[d][3].course}</td>
-          <td>${teacher[d][4].course}</td>
-          <td>${teacher[d][5].course}</td>
-          <td>${teacher[d][6].course}</td>
+          <td class="lab" colspan="3">${teacher[d][0].course.toLowerCase()=="null" ? "" : teacher[d][0].course.toUpperCase() }</td>
+          <td>${teacher[d][3].course.toLowerCase() == "null" ? "" : teacher[d][3].course.toUpperCase()}</td>
+          <td>${teacher[d][4].course.toLowerCase() == "null" ? "" : teacher[d][4].course.toUpperCase()}</td>
+          <td>${teacher[d][5].course.toLowerCase() == "null" ? "" : teacher[d][5].course.toUpperCase()}</td>
+          <td>${teacher[d][6].course.toLowerCase() == "null" ? "" : teacher[d][6].course.toUpperCase()}</td>
           `;
-
           table.appendChild(tr)
         }
         else if(lab2[lab2.length-1]%2 == 0){
           let tr = document.createElement("tr");
           tr.innerHTML=`
           <th>${d}</th>
-          <td>${teacher[d][0].course}</td>
-          <td>${teacher[d][1].course}</td>
-          <td>${teacher[d][2].course}</td>
-          <td class="lab" colspan="3">${teacher[d][3].course}</td>
-          <td>${teacher[d][6].course}</td>
+          <td>${teacher[d][0].course.toLowerCase() == "null" ? "" : teacher[d][0].course.toUpperCase()}</td>
+          <td>${teacher[d][1].course.toLowerCase() == "null" ? "" : teacher[d][1].course.toUpperCase()}</td>
+          <td>${teacher[d][2].course.toLowerCase() == "null" ? "" : teacher[d][2].course.toUpperCase()}</td>
+          <td class="lab" colspan="3">${teacher[d][3].course.toLowerCase()=="null" ? "" : teacher[d][3].course.toUpperCase()}</td>
+          <td>${teacher[d][6].course.toLowerCase()=="null" ? "" : teacher[d][6].course.toUpperCase()}</td>
           `;
-
           table.appendChild(tr)
         }
         else{
           let tr = document.createElement("tr");
           tr.innerHTML=`
           <th>${d}</th>
-          <td>${teacher[d][0].course}</td>
-          <td>${teacher[d][1].course}</td>
-          <td>${teacher[d][2].course}</td>
-          <td>${teacher[d][3].course}</td>
-          <td>${teacher[d][4].course}</td>
-          <td>${teacher[d][5].course}</td>
-          <td>${teacher[d][6].course}</td>
+          <td>${teacher[d][0].course.toLowerCase()=="null" ? "" : teacher[d][0].course.toUpperCase()}</td>
+          <td>${teacher[d][1].course.toLowerCase()=="null" ? "" : teacher[d][1].course.toUpperCase()}</td>
+          <td>${teacher[d][2].course.toLowerCase()=="null" ? "" : teacher[d][2].course.toUpperCase()}</td>
+          <td>${teacher[d][3].course.toLowerCase()=="null" ? "" : teacher[d][3].course.toUpperCase()}</td>
+          <td>${teacher[d][4].course.toLowerCase()=="null" ? "" : teacher[d][4].course.toUpperCase()}</td>
+          <td>${teacher[d][5].course.toLowerCase()=="null" ? "" : teacher[d][5].course.toUpperCase()}</td>
+          <td>${teacher[d][6].course.toLowerCase()=="null" ? "" : teacher[d][6].course.toUpperCase()}</td>
           `;
-
           table.appendChild(tr)
-        }
+        }        
       }
-
-      
-
     }
   })
 }

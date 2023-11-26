@@ -355,7 +355,7 @@ function teachers_post(
     .catch((error) => {
       // Handle errors during the fetch request
       console.error('erroe', error);
-      document.querySelector("#msg").innerText = "This schedule overlaps with an existing class. Please assign a different time or teacher.";
+      document.querySelector("#msg").innerText = "This schedule overlaps with an existing class. Please assign a different time.";
       document.querySelector("#msg").style.display="block";
     });
 }

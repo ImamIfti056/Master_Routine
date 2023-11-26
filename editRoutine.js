@@ -6,6 +6,9 @@ teachers_schedule.map(t =>{
     option.innerHTML = `${t.name}`;
     selectTeacher.appendChild(option)
 })
+
+let shortName = document.getElementById('shortName')
+
 // sunday
 let s_f_y = document.getElementById('s-f-y');
 let s_f_c = document.getElementById('s-f-c');
@@ -161,6 +164,9 @@ selectTeacher.addEventListener('click', function () {
                 if(i == "id" || i=="name" || i=="short_name" || i=="dept"){
                     continue;
                 }
+                // if(i == "short_name"){
+                //     shortName.value = t[i];
+                // }
                 if(i == "sunday"){
                     s_f_y.value = t[i][0].year;
                     s_f_c.value = t[i][0].course;
@@ -456,12 +462,13 @@ function updateRoutine(id,
         console.log(data);
         document.querySelector('#editMsg').innerText = 'Teacher updated successfully';
         document.querySelector('#editMsg').style.display = 'block';
+        document.querySelector('#editMsg').style.color = '#4CAF50';
         document.querySelector("#editRoutineForm").style.display="none";
       })
       .catch((error) => {
         // Handle errors during the fetch request
         console.error('Error updating teacher:', error);
-        document.querySelector('#editMsg').innerText = 'This schedule overlaps with an existing class. Please assign a different time or teacher';
+        document.querySelector('#editMsg').innerText = 'This schedule overlaps with an existing class. Please assign a different time';
         document.querySelector('#editMsg').style.display = 'block';
         document.querySelector('#editMsg').style.color = 'red';
       });

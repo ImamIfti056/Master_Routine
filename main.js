@@ -409,8 +409,8 @@ function createYearRoutine(){  //template of year routine
       {"time": "9:40 AM - 10:30 AM","teacher": "","course": ""},
       {"time": "10:40 AM - 11:30 AM","teacher": "","course": ""},
       {"time": "11:30 AM - 12:20 PM","teacher": "","course": ""},
-      {"time": "12:20 PM - 1:10 PM","teacher": "","course": ""},
-      {"time": "2:30 PM - 5:00 PM","teacher": "","course": ""}
+      {"time": "12:20 PM - 01:10 PM","teacher": "","course": ""},
+      {"time": "02:30 PM - 05:00 PM","teacher": "","course": ""}
     ],
     "monday":[
       {"time": "8:00 AM - 8:50 AM","teacher": "","course": ""},
@@ -418,8 +418,8 @@ function createYearRoutine(){  //template of year routine
       {"time": "9:40 AM - 10:30 AM","teacher": "","course": ""},
       {"time": "10:40 AM - 11:30 AM","teacher": "","course": ""},
       {"time": "11:30 AM - 12:20 PM","teacher": "","course": ""},
-      {"time": "12:20 PM - 1:10 PM","teacher": "","course": ""},
-      {"time": "2:30 PM - 5:00 PM","teacher": "","course": ""}
+      {"time": "12:20 PM - 01:10 PM","teacher": "","course": ""},
+      {"time": "02:30 PM - 05:00 PM","teacher": "","course": ""}
     ],
     "tuesday":[
       {"time": "8:00 AM - 8:50 AM","teacher": "","course": ""},
@@ -427,8 +427,8 @@ function createYearRoutine(){  //template of year routine
       {"time": "9:40 AM - 10:30 AM","teacher": "","course": ""},
       {"time": "10:40 AM - 11:30 AM","teacher": "","course": ""},
       {"time": "11:30 AM - 12:20 PM","teacher": "","course": ""},
-      {"time": "12:20 PM - 1:10 PM","teacher": "","course": ""},
-      {"time": "2:30 PM - 5:00 PM","teacher": "","course": ""}
+      {"time": "12:20 PM - 01:10 PM","teacher": "","course": ""},
+      {"time": "02:30 PM - 05:00 PM","teacher": "","course": ""}
     ],
     "wednesday":[
       {"time": "8:00 AM - 8:50 AM","teacher": "","course": ""},
@@ -436,8 +436,8 @@ function createYearRoutine(){  //template of year routine
       {"time": "9:40 AM - 10:30 AM","teacher": "","course": ""},
       {"time": "10:40 AM - 11:30 AM","teacher": "","course": ""},
       {"time": "11:30 AM - 12:20 PM","teacher": "","course": ""},
-      {"time": "12:20 PM - 1:10 PM","teacher": "","course": ""},
-      {"time": "2:30 PM - 5:00 PM","teacher": "","course": ""}
+      {"time": "12:20 PM - 01:10 PM","teacher": "","course": ""},
+      {"time": "02:30 PM - 05:00 PM","teacher": "","course": ""}
     ],
     "thursday":[
       {"time": "8:00 AM - 8:50 AM","teacher": "","course": ""},
@@ -445,8 +445,8 @@ function createYearRoutine(){  //template of year routine
       {"time": "9:40 AM - 10:30 AM","teacher": "","course": ""},
       {"time": "10:40 AM - 11:30 AM","teacher": "","course": ""},
       {"time": "11:30 AM - 12:20 PM","teacher": "","course": ""},
-      {"time": "12:20 PM - 1:10 PM","teacher": "","course": ""},
-      {"time": "2:30 PM - 5:00 PM","teacher": "","course": ""}
+      {"time": "12:20 PM - 01:10 PM","teacher": "","course": ""},
+      {"time": "02:30 PM - 05:00 PM","teacher": "","course": ""}
     ]
   }
 }
@@ -467,7 +467,21 @@ function getYearRoutine(y){
         if(teacher[d][i].year == "1"){
           for(let j=0; j<7; j++){
             if(teacher[d][i].time == firstYearRoutine[d][j].time && teacher[d][j].dept.toLowerCase() == "ece"){
-              firstYearRoutine[d][j].course = teacher[d][j].course;
+              if(firstYearRoutine[d][j].course && teacher[d][j].course!=firstYearRoutine[d][j].course){
+                if(firstYearRoutine[d][j].course.split('+').length > 1 && firstYearRoutine[d][j].course.split('+')[0] != teacher[d][j].course){
+                  firstYearRoutine[d][j].course = firstYearRoutine[d][j].course.split('+')[0] + '+' + teacher[d][j].course;    
+                }
+                else if(firstYearRoutine[d][j].course.split('+').length > 1 && firstYearRoutine[d][j].course.split('+')[1] != teacher[d][j].course){
+                  firstYearRoutine[d][j].course = firstYearRoutine[d][j].course.split('+')[1] + '+' + teacher[d][j].course;
+                }
+                else{
+                  firstYearRoutine[d][j].course = firstYearRoutine[d][j].course + '+' + teacher[d][j].course;
+                }
+
+              }else{
+                firstYearRoutine[d][j].course = teacher[d][j].course;
+              }
+              
               if(firstYearRoutine[d][j].teacher){
                 firstYearRoutine[d][j].teacher = firstYearRoutine[d][j].teacher + '/' + teacher.short_name;
               }else{
@@ -489,7 +503,21 @@ function getYearRoutine(y){
         if(teacher[d][i].year == "2"){
           for(let j=0; j<7; j++){
             if(teacher[d][i].time == secondYearRoutine[d][j].time && teacher[d][j].dept.toLowerCase() == "ece"){
-              secondYearRoutine[d][j].course = teacher[d][j].course;
+              if(secondYearRoutine[d][j].course && teacher[d][j].course!=secondYearRoutine[d][j].course){
+                if(secondYearRoutine[d][j].course.split('+').length > 1 && secondYearRoutine[d][j].course.split('+')[0] != teacher[d][j].course){
+                  secondYearRoutine[d][j].course = secondYearRoutine[d][j].course.split('+')[0] + '+' + teacher[d][j].course;    
+                }
+                else if(secondYearRoutine[d][j].course.split('+').length > 1 && secondYearRoutine[d][j].course.split('+')[1] != teacher[d][j].course){
+                  secondYearRoutine[d][j].course = secondYearRoutine[d][j].course.split('+')[1] + '+' + teacher[d][j].course;
+                }
+                else{
+                  secondYearRoutine[d][j].course = secondYearRoutine[d][j].course + '+' + teacher[d][j].course;
+                }
+            
+              }else{
+                secondYearRoutine[d][j].course = teacher[d][j].course;
+              }
+
               if(secondYearRoutine[d][j].teacher){
                 secondYearRoutine[d][j].teacher = secondYearRoutine[d][j].teacher + '/' + teacher.short_name;
               }else{
@@ -512,7 +540,21 @@ function getYearRoutine(y){
         if(teacher[d][i].year == "3"){
           for(let j=0; j<7; j++){
             if(teacher[d][i].time == thirdYearRoutine[d][j].time && teacher[d][j].dept.toLowerCase() == "ece"){
-              thirdYearRoutine[d][j].course = teacher[d][j].course;
+              if(thirdYearRoutine[d][j].course && teacher[d][j].course!=thirdYearRoutine[d][j].course){
+                if(thirdYearRoutine[d][j].course.split('+').length > 1 && thirdYearRoutine[d][j].course.split('+')[0] != teacher[d][j].course){
+                  thirdYearRoutine[d][j].course = thirdYearRoutine[d][j].course.split('+')[0] + '+' + teacher[d][j].course;    
+                }
+                else if(thirdYearRoutine[d][j].course.split('+').length > 1 && thirdYearRoutine[d][j].course.split('+')[1] != teacher[d][j].course){
+                  thirdYearRoutine[d][j].course = thirdYearRoutine[d][j].course.split('+')[1] + '+' + teacher[d][j].course;
+                }
+                else{
+                  thirdYearRoutine[d][j].course = thirdYearRoutine[d][j].course + '+' + teacher[d][j].course;
+                }
+            
+              }else{
+                thirdYearRoutine[d][j].course = teacher[d][j].course;
+              }
+
               if(thirdYearRoutine[d][j].teacher){
                 thirdYearRoutine[d][j].teacher = thirdYearRoutine[d][j].teacher + '/' + teacher.short_name;
               }else{                
@@ -534,10 +576,22 @@ function getYearRoutine(y){
         }
         if(teacher[d][i].year == "4"){
           for(let j=0; j<7; j++){
-            // console.log(teacher[d][i].time, fourthYearRoutine[d][j].time)
             if(teacher[d][i].time == fourthYearRoutine[d][j].time  && teacher[d][j].dept.toLowerCase() == "ece"){
-              // console.log(teacher[d][j].course)
-              fourthYearRoutine[d][j].course = teacher[d][j].course;
+              if(fourthYearRoutine[d][j].course && teacher[d][j].course!=fourthYearRoutine[d][j].course){
+                if(fourthYearRoutine[d][j].course.split('+').length > 1 && fourthYearRoutine[d][j].course.split('+')[0] != teacher[d][j].course){
+                  fourthYearRoutine[d][j].course = fourthYearRoutine[d][j].course.split('+')[0] + '+' + teacher[d][j].course;    
+                }
+                else if(fourthYearRoutine[d][j].course.split('+').length > 1 && fourthYearRoutine[d][j].course.split('+')[1] != teacher[d][j].course){
+                  fourthYearRoutine[d][j].course = fourthYearRoutine[d][j].course.split('+')[1] + '+' + teacher[d][j].course;
+                }
+                else{
+                  fourthYearRoutine[d][j].course = fourthYearRoutine[d][j].course + '+' + teacher[d][j].course;
+                }
+
+              }else{
+                fourthYearRoutine[d][j].course = teacher[d][j].course;
+              }
+
               if(fourthYearRoutine[d][j].teacher){
                 fourthYearRoutine[d][j].teacher= fourthYearRoutine[d][j].teacher + '/' + teacher.short_name;
               }else{

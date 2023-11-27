@@ -50,7 +50,7 @@ td, th{
     text-transform: capitalize;
     min-width: 80px;
     height: 60px;
-    border-right: 2px solid #ddd
+    border-right: 2px solid #ddd;
 }
 
 td.lab{
@@ -98,11 +98,12 @@ nav h1{
     color: white;
     margin: 10px 0;
     margin-bottom: 30px;
+    font-size: 20px;
 }
 
 nav ul li button{
     border: none;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     background-color: transparent;
     color: white;
@@ -131,7 +132,8 @@ nav ul li button:hover{
 #teachers-list h1, #courses h1{
     text-align: center;
     margin-bottom: 14px;
-    color: var(--primary)
+    color: var(--primary);
+    font-size: 18px;
 }
 #teachers-list ol li, #courses li{
     margin: 8px 0;
@@ -153,14 +155,14 @@ nav ul li button:hover{
 
 #master-routine h1{
     text-align: center;
-    margin: 30px 0;
+    margin: 20px 0;
     font-size: 30px;
 }
 
 #master-routine #dayLabel{
     display: inline-block;
     width: 200px;
-
+    font-size: 24px;
 }
 
 .btn-arrow{
@@ -168,8 +170,8 @@ nav ul li button:hover{
     border: 2px solid var(--primary);
     border-radius: 10%;
     color: var(--primary);
-    font-size: 30px;
-    padding: 0px 20px;
+    font-size: 24px;
+    padding: 0px 14px;
     background: white;
 }
 .btn-arrow:hover{

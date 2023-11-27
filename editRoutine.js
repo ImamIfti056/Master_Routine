@@ -296,6 +296,7 @@ function updateRoutine(id,
     th_f_y, th_f_c, th_f_d, th_s_y, th_s_c, th_s_d, th_t_y, th_t_c, th_t_d, th_fo_y, th_fo_c, th_fo_d, th_fi_y, th_fi_c, th_fi_d, th_si_y, th_si_c, th_si_d, th_l_y, th_l_c, th_l_d)
 {
     console.log('updating', id);
+    console.log('updating', m_si_y.value);
     if(id){
         fetch(`http://127.0.0.1:8000/teachers/${id}`, {
         method: "PUT",
@@ -353,7 +354,7 @@ function updateRoutine(id,
             monday_sixth_year: m_si_y.value.toLowerCase(),
             monday_sixth_course: m_si_c.value.toLowerCase(),
             monday_sixth_dept: m_si_d.value.toLowerCase(),
-
+            
             monday_lab_year: m_l_y.value.toLowerCase(),
             monday_lab_course: m_l_c.value.toLowerCase(),
             monday_lab_dept: m_l_d.value.toLowerCase(),
@@ -445,7 +446,7 @@ function updateRoutine(id,
             thursday_lab_course: th_l_c.value.toLowerCase(),
             thursday_lab_dept: th_l_d.value.toLowerCase(),
         }),
-
+    
         headers: {
             "Content-type": "application/json; charset=UTF-8",
         }
